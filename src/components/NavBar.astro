@@ -1,0 +1,129 @@
+---
+import Zeit from "./src/shared-images/zeit.svg";
+
+const navItems = [
+  { name: "HOME", href: "#home" },
+  { name: "TIME", href: "#team" },
+  { name: "SOLUÇÕES", href: "#solutions" },
+  { name: "CONTATO", href: "#contact" },
+];
+---
+
+<header class="relative z-10 mx-4 mt-14">
+  <nav
+    class="flex items-center justify-between rounded-full border-0 bg-white/10 px-8 py-4 shadow-lg backdrop-blur-md"
+  >
+    <!-- Logo -->
+    <Zeit width={94} />
+
+    <!-- Desktop Navigation Menu -->
+    <div class="hidden items-center space-x-8 md:flex">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="rounded-full px-3 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 hover:bg-white/10 hover:text-green-400"
+          >
+            {item.name}
+          </a>
+        ))
+      }
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button
+      class="rounded-full p-2 text-white transition-colors duration-200 hover:bg-white/10 md:hidden"
+      aria-label="Menu"
+      id="mobile-menu-button"
+    >
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu Overlay (hidden by default) -->
+  <div
+    id="mobile-menu"
+    class="invisible fixed inset-x-4 top-20 -translate-y-4 transform rounded-2xl border border-white/20 bg-white/10 px-6 py-6 opacity-0 shadow-lg backdrop-blur-md transition-all duration-300 md:hidden"
+  >
+    <div class="flex flex-col space-y-4">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="mobile-menu-link rounded-lg px-4 py-3 text-base font-medium tracking-wide text-white transition-colors duration-200 hover:bg-white/10 hover:text-green-400"
+          >
+            {item.name}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle functionality
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuLinks = document.querySelectorAll(".mobile-menu-link");
+    let isMenuOpen = false;
+
+    // Toggle mobile menu
+    const toggleMenu = () => {
+      isMenuOpen = !isMenuOpen;
+
+      if (isMenuOpen) {
+        mobileMenu?.classList.remove(
+          "opacity-0",
+          "invisible",
+          "-translate-y-4",
+        );
+        mobileMenu?.classList.add("opacity-100", "visible", "translate-y-0");
+      } else {
+        mobileMenu?.classList.add("opacity-0", "invisible", "-translate-y-4");
+        mobileMenu?.classList.remove("opacity-100", "visible", "translate-y-0");
+      }
+    };
+
+    // Menu button click handler
+    menuButton?.addEventListener("click", toggleMenu);
+
+    // Close menu when clicking on a link
+    menuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (isMenuOpen) {
+          toggleMenu();
+        }
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (event) => {
+      const target = event.target as Element;
+      if (
+        isMenuOpen &&
+        !mobileMenu?.contains(target) &&
+        !menuButton?.contains(target)
+      ) {
+        toggleMenu();
+      }
+    });
+
+    // Dispatch custom event for menu toggle
+    const event = new CustomEvent("toggleMobileMenu", {
+      detail: { isOpen: isMenuOpen },
+    });
+    document.dispatchEvent(event);
+  });
+</script>

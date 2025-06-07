@@ -1,0 +1,121 @@
+---
+import PillButton from "./PillButton.astro";
+
+// src/components/NewsletterSection.astro
+// Data for the recent articles/posts, as seen in the Newsletter im/zeit-states.png.
+// Adjust paths and content as per your actual articles.
+const articles = [
+  {
+    title:
+      "Use a nossa tecnologia para monitorar os níveis de potássio na sua plantação",
+    image: "/zeit-states.png", // Update with actual image path
+    alt: "Close-up of a plant sprout in soil with a green circular monitor, illustrating potassium monitoring technology.",
+    date: "1 mês atrás", // 1 month ago
+    link: "#", // Replace with actual article link
+  },
+  {
+    title:
+      "Você sabe a importância de tomar decisões rápidas na sua plantação?",
+    image: "/zeit-states.png", // Update with actual image path
+    alt: 'Text overlays "Imprevistos acontecem. Dados certos = Ação na hora certa." with illustrations of leaves and a plant, representing quick decision-making in agriculture.',
+    date: "1 semana atrás", // 1 week ago
+    link: "#", // Replace with actual article link
+  },
+  {
+    title:
+      "Nossa cofundadora recebe o troféu de 1º lugar do programa mulheres inovadoras 2024 no Web Summit Rio",
+    image: "/zeit-states.png", // Update with actual image path
+    alt: "Two women, one holding a trophy, smiling and standing in front of a conference background, depicting the cofounder winning an innovation award.",
+    date: "1 mês atrás", // 1 month ago
+    link: "#", // Replace with actual article link
+  },
+];
+---
+
+<section class="bg-white py-10 md:py-20" aria-labelledby="newsletter-heading">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2
+      id="newsletter-heading"
+      class="mb-4 text-center font-mono text-3xl font-bold text-gray-900 md:mb-6 md:text-left md:text-4xl lg:text-5xl"
+    >
+      Fique por dentro das <span class="text-orange-500">inovações</span> que estão
+      moldando o agro do futuro.
+    </h2>
+    <p
+      class="mx-auto mb-10 max-w-2xl text-center text-lg text-gray-700 md:mx-0 md:mb-16 md:text-left md:text-xl"
+    >
+      Assine nossa newsletter e receba, em primeira mão, novidades, cases de
+      sucesso e tendências do setor.
+    </p>
+
+    <div
+      class="mb-16 grid grid-cols-1 justify-items-center gap-8 md:grid-cols-2 md:justify-items-start lg:grid-cols-3"
+    >
+      {
+        articles.map((article) => (
+          <a
+            href={article.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:outline-none"
+            aria-label={`Read more about: ${article.title}`}
+          >
+            <img
+              src={article.image}
+              alt={article.alt}
+              class="h-48 w-full object-cover"
+              loading="lazy"
+            />
+            <div class="bg-orange-500 p-6 text-white">
+              {" "}
+              {/* Orange background section */}
+              <h3 class="mb-2 text-xl font-semibold">{article.title}</h3>
+              <p class="text-sm">{article.date}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <h3
+      class="mb-6 text-center font-mono text-xl font-bold text-gray-900 md:text-2xl"
+    >
+      Insira seu e-mail para receber a newsletter
+    </h3>
+
+    <form
+      class="mx-auto flex max-w-md flex-col gap-4 md:flex-row md:items-center"
+      aria-label="Newsletter Subscription Form"
+    >
+      <label for="firstName" class="sr-only">Primeiro Nome</label>
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        placeholder="Primeiro Nome"
+        autocomplete="given-name"
+        class="w-full rounded-md bg-gray-50 p-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-orange-500 focus:outline-none md:w-1/2"
+        aria-required="false"
+      />
+
+      <label for="email" class="sr-only">E-mail</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="E-mail"
+        autocomplete="email"
+        required
+        class="w-full rounded-md bg-gray-50 p-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-orange-500 focus:outline-none md:w-1/2"
+        aria-required="true"
+      />
+
+      <button
+        type="submit"
+        class="w-full flex-shrink-0 rounded-md bg-orange-500 px-6 py-3 font-semibold text-white shadow-md transition-colors duration-300 hover:bg-orange-600 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:outline-none md:w-auto"
+      >
+        QUERO ACOMPANHAR
+      </button>
+    </form>
+  </div>
+</section>

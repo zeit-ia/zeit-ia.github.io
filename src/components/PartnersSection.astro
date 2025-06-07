@@ -1,0 +1,136 @@
+---
+// src/components/PartnersSection.astro
+const partnersData = [
+  {
+    name: "Universidade Federal de Santa Maria",
+    logo: "/zeit-states.png",
+    url: "https://www.ufsm.br/",
+  },
+  {
+    name: "Inovatec P&D",
+    logo: "/zeit-states.png",
+    url: "https://inovatecpd.com.br/",
+  },
+  {
+    name: "Pulsar Incubadora da UFSM",
+    logo: "/zeit-states.png",
+    url: "https://pulsar.ufsm.br/",
+  },
+  {
+    name: "Finep",
+    logo: "/zeit-states.png",
+    url: "https://www.finep.gov.br/",
+  },
+  {
+    name: "Badesul Desenvolvimento",
+    logo: "/zeit-states.png",
+    url: "https://www.badesul.com.br/",
+  },
+  {
+    name: "FAPERGS",
+    logo: "/zeit-states.png",
+    url: "https://www.fapergs.rs.gov.br/",
+  },
+  {
+    name: "SEBRAE",
+    logo: "/zeit-states.png",
+    url: "https://sebrae.com.br/",
+  },
+  {
+    name: "Genesis Group",
+    logo: "/zeit-states.png",
+    url: "https://genesisgroup.com.br/",
+  },
+  // IMPORTANT: Update these paths to your actual logo locations
+  // and add any other partners you have based on the images.
+];
+---
+
+<section class="bg-gray-200 py-10 md:py-20" aria-labelledby="partners-heading">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2
+      id="partners-heading"
+      class="mb-10 text-center font-mono text-3xl font-bold md:mb-16 md:text-4xl"
+    >
+      Tecnologias relevantes têm o apoio de grandes parceiros.
+    </h2>
+
+    <div class="partners-carousel group relative w-full overflow-hidden">
+      <div
+        id="partners-track"
+        class="partners-track flex whitespace-nowrap will-change-transform"
+      >
+        {
+          // Render initial set of partners
+          partnersData.map((partner) => (
+            <a
+              href={partner.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mx-4 inline-flex flex-shrink-0 items-center justify-center rounded-md transition-transform duration-300 ease-in-out hover:scale-110 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none md:mx-6 lg:mx-8"
+              aria-label={`Visit ${partner.name} website`}
+            >
+              <img
+                src={partner.logo}
+                alt={`${partner.name} Logo`}
+                class="h-16 w-auto object-contain md:h-20 lg:h-24"
+                loading="lazy"
+              />
+            </a>
+          ))
+        }
+        {
+          // Render a duplicated set for seamless looping (will be handled by JS)
+          // This ensures enough content for the animation to be smooth.
+          partnersData.map((partner) => (
+            <a
+              href={partner.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mx-4 inline-flex flex-shrink-0 items-center justify-center rounded-md transition-transform duration-300 ease-in-out hover:scale-110 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none md:mx-6 lg:mx-8"
+              aria-label={`Visit ${partner.name} website`}
+            >
+              <img
+                src={partner.logo}
+                alt={`${partner.name} Logo`}
+                class="h-16 w-auto object-contain md:h-20 lg:h-24"
+                loading="lazy"
+              />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Base animation for desktop */
+  .partners-track {
+    animation: scrollLogos 30s linear infinite;
+  }
+
+  /* Pause animation on hover for accessibility and better UX */
+  .partners-carousel:hover .partners-track {
+    animation-play-state: paused;
+  }
+
+  /* Keyframe animation for continuous scrolling */
+  @keyframes scrollLogos {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      /* This value needs to be half the total width of the *duplicated* track content */
+      /* It will be adjusted by JS for perfect loop, but set a general value here */
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 767px) {
+    .partners-track {
+      animation-duration: 20s; /* Faster scroll for mobile with less content */
+    }
+  }
+</style>

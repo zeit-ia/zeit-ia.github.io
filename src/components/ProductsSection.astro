@@ -1,0 +1,278 @@
+---
+import PillButton from "./PillButton.astro";
+
+// src/components/ProductsSection.astro
+
+// Data for each product, including its cards for the carousel
+const products = [
+  {
+    id: "zeit-k",
+    name: "Zeit K",
+    image: "/assets/products/zeit-k-main.jpg", // Update with actual image path (consider renaming asset)
+    alt: "Green plant leaves and a soil sample, representing Zeit K technology.",
+    cards: [
+      {
+        description:
+          "O Zeit K é uma tecnologia inovadora que realiza o monitoramento dos níveis de potássio na planta em base foliar. A solução coleta, mais de 60 culturas agrícolas e oferece uma análise rápida e precisa, feita em menos de 5 minutos, direto no campo. Com o Zeit K, o produtor toma decisões assertivas e no momento certo, evitando perdas na safra e garantindo o melhor desempenho da lavoura. Mais agilidade, mais eficiência, mais resultado.",
+        buttonText: "SAIBA MAIS",
+        buttonLink: "#", // Replace with actual link for Zeit K product page
+      },
+      // Add more cards for Zeit K if available
+    ],
+  },
+  {
+    id: "zeit-agro",
+    name: "Zeit Agro",
+    image: "/assets/products/zeit-agro-main.jpg", // Update with actual image path (consider renaming asset)
+    alt: "View of a vast agricultural field with a tractor in the distance, representing Zeit Agro platform.",
+    cards: [
+      {
+        description:
+          "O Zeit Agro é uma plataforma desenvolvida para apoiar agrônomos e técnicos no gerenciamento completo das atividades da safra de seus clientes. Com ela, os produtores têm acesso a todos os dados da fazenda em um só lugar, podendo acompanhar a evolução da produção, estimular o manejo de precisão e receber recomendações assertivas de corretivos. Uma ferramenta inteligente, que organiza o dia a dia no campo, economiza tempo e oferece mais controle sobre o mercado.",
+        buttonText: "SAIBA MAIS",
+        buttonLink: "#", // Replace with actual link for Zeit Agro product page
+      },
+      // Add more cards for Zeit Agro if available
+    ],
+  },
+  {
+    id: "nira",
+    name: "Nira",
+    image: "/assets/products/nira-main.jpg",
+    alt: "Close-up of dried seeds, representing Nira analysis technology.",
+    cards: [
+      {
+        description:
+          "Analisamos os parâmetros de qualidade dos grãos de soja para decisões assertivas na comercialização. Com Nira, analise proteína, óleo e umidade dos grãos de soja e proteína. Dados únicos e decisões assertivas para o ciclo de farelo. Resultados em menos de 2 minutos direto no app. Assertividade média de 99%.",
+        buttonText: "SAIBA MAIS",
+        buttonLink: "#", // Replace with actual link for Nira product page
+      },
+      // Add more cards for Nira if available
+    ],
+  },
+];
+---
+
+<section class="bg-gray-100 py-10 md:py-20" aria-labelledby="products-heading">
+  <div
+    class="mx-auto mb-16 max-w-7xl px-4 text-center sm:px-6 md:text-left lg:px-8"
+  >
+    <h2
+      id="products-heading"
+      class="mb-4 text-3xl font-bold text-gray-900 md:mb-6 md:text-4xl lg:text-5xl"
+    >
+      Da análise à ação:
+      <span class="text-orange-500">nossas soluções te levam até lá.</span>
+    </h2>
+    <p class="mx-auto max-w-3xl text-lg text-gray-700 md:mx-0 md:text-xl">
+      As tecnologias da Zeit foram desenvolvidas para oferecer respostas rápidas
+      e seguras, para decisões assertivas. Com inovação e IA, transformamos
+      dados do campo em resultados concretos.
+    </p>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    {
+      products
+        .filter((p) => p.id === "zeit-k")
+        .map((product) => (
+          <div
+            class="relative mb-16 bg-cover bg-center py-10 md:py-20"
+            style={`background-image: url('${product.image}');`}
+            aria-labelledby={`product-heading-${product.id}`}
+          >
+            <div class="absolute inset-0 bg-black opacity-40" />{" "}
+            {/* Dark overlay for readability */}
+            <h3 id={`product-heading-${product.id}`} class="sr-only">
+              {product.name}
+            </h3>{" "}
+            {/* SR-only title for Zeit K */}
+            <div class="relative z-10 mx-auto w-full max-w-sm rounded-2xl bg-white/30 p-8 text-gray-800 shadow-xl backdrop-blur-md">
+              {" "}
+              {/* Now properly centered with mx-auto */}
+              <div
+                class="product-card-carousel"
+                id={`carousel-${product.id}`}
+                data-product-id={product.id}
+              >
+                {product.cards.map((card, cardIndex) => (
+                  <div class="product-card" data-card-index={cardIndex}>
+                    <img
+                      src={`/assets/logos/${product.id}-logo.svg`}
+                      alt={`${product.name} logo`}
+                      class="mx-auto mb-4 h-10"
+                      loading="lazy"
+                    />
+                    <p class="mb-6 text-center text-gray-200">
+                      {card.description}
+                    </p>
+                    <div class="flex justify-center">
+                      <a href={card.buttonLink}>
+                        <PillButton>{card.buttonText}</PillButton>
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {product.cards.length > 1 && (
+                <div class="carousel-dots mt-6 flex justify-center space-x-2">
+                  {product.cards.map((_, dotIndex) => (
+                    <button
+                      type="button"
+                      aria-label={`Go to slide ${dotIndex + 1} for ${product.name}`}
+                      class:list={[
+                        "h-3 w-3 rounded-full bg-gray-400 focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 focus:outline-none",
+                        { "bg-gray-700": dotIndex === 0 },
+                      ]}
+                      data-dot-index={dotIndex}
+                      onclick="nextSlide(this.closest('.product-card-carousel').id, this.dataset.dotIndex)"
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        ))
+    }
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
+      {
+        products
+          .filter((p) => p.id === "zeit-agro" || p.id === "nira")
+          .map((product) => (
+            <div
+              class="relative bg-cover bg-center py-10 md:py-20"
+              style={`background-image: url('${product.image}');`}
+              aria-labelledby={`product-heading-${product.id}`}
+            >
+              <div class="absolute inset-0 bg-black opacity-40" />{" "}
+              {/* Dark overlay */}
+              {/* Product Title for Zeit Agro and Nira (visible on desktop) */}
+              <div class="relative z-10 text-center md:mb-6 md:text-left">
+                <h3
+                  id={`product-heading-${product.id}`}
+                  class="mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl"
+                >
+                  {product.name}
+                </h3>
+              </div>
+              {/* Product Card Carousel */}
+              <div class="relative z-10 mx-auto w-full max-w-sm rounded-2xl bg-white/30 p-8 text-gray-800 shadow-xl backdrop-blur-md">
+                <div
+                  class="product-card-carousel"
+                  id={`carousel-${product.id}`}
+                  data-product-id={product.id}
+                >
+                  {product.cards.map((card, cardIndex) => (
+                    <div class="product-card" data-card-index={cardIndex}>
+                      <img
+                        src={`/assets/logos/${product.id}-logo.svg`}
+                        alt={`${product.name} logo`}
+                        class="mx-auto mb-4 h-10"
+                        loading="lazy"
+                      />
+                      <p class="mb-6 text-center text-gray-200">
+                        {card.description}
+                      </p>
+                      <div class="flex justify-center">
+                        {" "}
+                        {/* Centering the button */}
+                        <a href={card.buttonLink}>
+                          <PillButton>{card.buttonText}</PillButton>
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {product.cards.length > 1 && (
+                  <div class="carousel-dots mt-6 flex justify-center space-x-2">
+                    {product.cards.map((_, dotIndex) => (
+                      <button
+                        type="button"
+                        aria-label={`Go to slide ${dotIndex + 1} for ${product.name}`}
+                        class:list={[
+                          "h-3 w-3 rounded-full bg-gray-400 focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 focus:outline-none",
+                          { "bg-gray-700": dotIndex === 0 },
+                        ]}
+                        data-dot-index={dotIndex}
+                        onclick="nextSlide(this.closest('.product-card-carousel').id, this.dataset.dotIndex)"
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Basic styling for hidden cards */
+  .product-card {
+    display: none;
+  }
+  .product-card[data-card-index="0"] {
+    /* Always show the first card by default */
+    display: block;
+  }
+</style>
+
+<script>
+  // Global function for carousel navigation, accessible from inline onclick
+  window.nextSlide = (carouselId, targetIndex) => {
+    const carousel = document.getElementById(carouselId);
+    if (!carousel) return;
+
+    const cards = carousel.querySelectorAll(".product-card");
+    const dots = carousel.nextElementSibling?.querySelectorAll("button"); // Get dots from sibling div
+
+    cards.forEach((card, index) => {
+      card.style.display = index === parseInt(targetIndex) ? "block" : "none";
+    });
+
+    dots?.forEach((dot, index) => {
+      if (dot) {
+        // Check if dot exists before accessing classList
+        dot.classList.remove("bg-gray-700");
+        dot.classList.add("bg-gray-400");
+        if (index === parseInt(targetIndex)) {
+          dot.classList.remove("bg-gray-400");
+          dot.classList.add("bg-gray-700");
+        }
+      }
+    });
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Auto-advance logic for each carousel
+    document.querySelectorAll(".product-card-carousel").forEach((carousel) => {
+      const cards = carousel.querySelectorAll(".product-card");
+      const dots = carousel.nextElementSibling?.querySelectorAll("button");
+      let currentCardIndex = 0;
+
+      if (cards.length <= 1) {
+        // No need for carousel if only one card
+        if (dots) dots.forEach((dot) => (dot.style.display = "none")); // Hide dots if only one card
+        return;
+      }
+
+      const advanceSlide = () => {
+        currentCardIndex = (currentCardIndex + 1) % cards.length;
+        window.nextSlide(carousel.id, currentCardIndex);
+      };
+
+      // Set interval for auto-advance (e.g., every 5 seconds)
+      const interval = setInterval(advanceSlide, 5000); // 5 seconds
+
+      // Optional: Pause on hover
+      carousel
+        .closest('div[style*="background-image"]')
+        .addEventListener("mouseenter", () => clearInterval(interval));
+      carousel
+        .closest('div[style*="background-image"]')
+        .addEventListener("mouseleave", () => setInterval(advanceSlide, 5000));
+    });
+  });
+</script>
