@@ -1,0 +1,157 @@
+---
+import ufsm_logo from "./ufsm-logo.png";
+import inovatec_logo from "./inovatec-logo.png";
+import finep_logo from "./finep-logo.png";
+import pulsar_logo from "./pulsar-logo.png";
+import badesul_logo from "./badesul-logo.png";
+import fapergs_logo from "./fapergs-logo.png";
+import sebrae_logo from "./sebrae-logo.png";
+import genesis_logo from "./genesis-logo.png";
+import geapa_logo from "./geapa-logo.png";
+import jobim_logo from "./jobim-logo.png";
+import auftek_logo from "./auftek-logo.png";
+import crops_logo from "./crops-logo.png";
+import { Image } from "astro:assets";
+
+const partnersData = [
+  {
+    name: "Universidade Federal de Santa Maria",
+    logo: ufsm_logo,
+    url: "https://www.ufsm.br/",
+  },
+  {
+    name: "Inovatec P&D",
+    logo: inovatec_logo,
+    url: "https://inovatecpd.com.br/",
+  },
+  {
+    name: "Pulsar Incubadora da UFSM",
+    logo: pulsar_logo,
+    url: "https://pulsar.ufsm.br/",
+  },
+  {
+    name: "Finep",
+    logo: finep_logo,
+    url: "https://www.finep.gov.br/",
+  },
+  {
+    name: "Badesul Desenvolvimento",
+    logo: badesul_logo,
+    url: "https://www.badesul.com.br/",
+  },
+  {
+    name: "FAPERGS",
+    logo: fapergs_logo,
+    url: "https://www.fapergs.rs.gov.br/",
+  },
+  {
+    name: "SEBRAE",
+    logo: sebrae_logo,
+    url: "https://sebrae.com.br/",
+  },
+  {
+    name: "Genesis Group",
+    logo: genesis_logo,
+    url: "https://genesisgroup.com.br/",
+  },
+  {
+    name: "GEAPA: Grupo de Estudo em Aditivos na Producao Animal",
+    logo: geapa_logo,
+    url: "#",
+  },
+  {
+    name: "Jobim Advogados Associados",
+    logo: jobim_logo,
+    url: "https://www.jobimadvogados.com.br",
+  },
+  {
+    name: "Auftek",
+    logo: auftek_logo,
+    url: "https://auftek.com",
+  },
+  {
+    name: "Crops Team",
+    logo: crops_logo,
+    url: "https://www.cropsteam.com",
+  },
+];
+---
+
+<section class="bg-gray-200 py-10 md:py-20" aria-labelledby="partners-heading">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2
+      id="partners-heading"
+      class="mb-10 text-center font-mono text-3xl font-bold md:mb-16 md:text-4xl"
+    >
+      Tecnologias relevantes têm o apoio de grandes parceiros.
+    </h2>
+
+    <div class="partners-carousel group relative w-full overflow-hidden">
+      <div
+        id="partners-track"
+        class="partners-track flex whitespace-nowrap will-change-transform"
+      >
+        {
+          // Render initial set of partners
+          partnersData.map((partner) => (
+            <a
+              href={partner.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mx-4 inline-flex flex-shrink-0 items-center justify-center rounded-md transition-transform duration-300 ease-in-out hover:scale-110 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none md:mx-6 lg:mx-8"
+              aria-label={`Visit ${partner.name} website`}
+            >
+              <Image
+                src={partner.logo}
+                alt={`${partner.name} Logo`}
+                class="h-auto w-[120px] object-contain"
+              />
+            </a>
+          ))
+        }
+        {
+          partnersData.map((partner) => (
+            <a
+              href={partner.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mx-4 inline-flex flex-shrink-0 items-center justify-center rounded-md transition-transform duration-300 ease-in-out hover:scale-110 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none md:mx-6 lg:mx-8"
+              aria-label={`Visit ${partner.name} website`}
+            >
+              <Image
+                src={partner.logo}
+                alt={`${partner.name} Logo`}
+                class="h-auto w-[120px] object-contain"
+              />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .partners-track {
+    animation: scrollLogos 30s linear infinite;
+  }
+
+  .partners-carousel:hover .partners-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes scrollLogos {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .partners-track {
+      animation-duration: 20s; /* Faster scroll for mobile with less content */
+    }
+  }
+</style>

@@ -1,65 +1,79 @@
 ---
+import zeitk_logo from "../shared-images/zeitk-logo.svg";
+import zeitk_bg from "../shared-images/zeitk-bg.jpg";
+import nira_logo from "../shared-images/nira-logo.svg";
+import nira_bg from "../shared-images/nira-bg.jpg";
+import zeitagro_logo from "../shared-images/zeitagro-logo.svg";
+import zeitagro_bg from "../shared-images/zeitagro-bg.jpg";
+
 import PillButton from "./PillButton.astro";
+import { Image } from "astro:assets";
 
-// src/components/ProductsSection.astro
-
-// Data for each product, including its cards for the carousel
 const products = [
   {
     id: "zeit-k",
     name: "Zeit K",
-    image: "/assets/products/zeit-k-main.jpg", // Update with actual image path (consider renaming asset)
+    logo: zeitk_logo,
+    image: zeitk_bg,
     alt: "Green plant leaves and a soil sample, representing Zeit K technology.",
     cards: [
       {
-        description:
-          "O Zeit K é uma tecnologia inovadora que realiza o monitoramento dos níveis de potássio na planta em base foliar. A solução coleta, mais de 60 culturas agrícolas e oferece uma análise rápida e precisa, feita em menos de 5 minutos, direto no campo. Com o Zeit K, o produtor toma decisões assertivas e no momento certo, evitando perdas na safra e garantindo o melhor desempenho da lavoura. Mais agilidade, mais eficiência, mais resultado.",
+        description: [
+          "O Zeit K é uma tecnologia inovadora que realiza o monitoramento dos níveis de potássio na planta em base foliar.",
+          "A solução coleta, mais de 60 culturas agrícolas e oferece uma análise rápida e precisa, feita em menos de 5 minutos, direto no campo.",
+          "Com o Zeit K, o produtor toma decisões assertivas e no momento certo, evitando perdas na safra e garantindo o melhor desempenho da lavoura.",
+          "Mais agilidade, mais eficiência, mais resultado.",
+        ],
         buttonText: "SAIBA MAIS",
-        buttonLink: "#", // Replace with actual link for Zeit K product page
+        buttonLink: "#",
       },
-      // Add more cards for Zeit K if available
     ],
   },
   {
     id: "zeit-agro",
     name: "Zeit Agro",
-    image: "/assets/products/zeit-agro-main.jpg", // Update with actual image path (consider renaming asset)
+    logo: zeitagro_logo,
+    image: zeitagro_bg,
     alt: "View of a vast agricultural field with a tractor in the distance, representing Zeit Agro platform.",
     cards: [
       {
-        description:
-          "O Zeit Agro é uma plataforma desenvolvida para apoiar agrônomos e técnicos no gerenciamento completo das atividades da safra de seus clientes. Com ela, os produtores têm acesso a todos os dados da fazenda em um só lugar, podendo acompanhar a evolução da produção, estimular o manejo de precisão e receber recomendações assertivas de corretivos. Uma ferramenta inteligente, que organiza o dia a dia no campo, economiza tempo e oferece mais controle sobre o mercado.",
+        description: [
+          "O Zeit Agro é uma plataforma desenvolvida para apoiar agrônomos e técnicos no gerenciamento completo das atividades da safra de seus clientes.",
+          "Com ela, os produtores têm acesso a todos os dados da fazenda em um só lugar, podendo acompanhar a evolução da produção, estimular o manejo de precisão e receber recomendações assertivas de corretivos.",
+          "Uma ferramenta inteligente, que organiza o dia a dia no campo, economiza tempo e oferece mais controle sobre o mercado.",
+        ],
         buttonText: "SAIBA MAIS",
-        buttonLink: "#", // Replace with actual link for Zeit Agro product page
+        buttonLink: "#",
       },
-      // Add more cards for Zeit Agro if available
     ],
   },
   {
     id: "nira",
     name: "Nira",
-    image: "/assets/products/nira-main.jpg",
+    logo: nira_logo,
+    image: nira_bg,
     alt: "Close-up of dried seeds, representing Nira analysis technology.",
     cards: [
       {
-        description:
-          "Analisamos os parâmetros de qualidade dos grãos de soja para decisões assertivas na comercialização. Com Nira, analise proteína, óleo e umidade dos grãos de soja e proteína. Dados únicos e decisões assertivas para o ciclo de farelo. Resultados em menos de 2 minutos direto no app. Assertividade média de 99%.",
+        description: [
+          "Analisamos os parâmetros de qualidade dos grãos de soja para decisões assertivas na comercialização.",
+          "Com Nira, analise proteína, óleo e umidade dos grãos de soja e proteína.",
+          "Dados únicos e decisões assertivas para o ciclo de farelo.",
+          "Resultados em menos de 2 minutos direto no app. Assertividade média de 99%.",
+        ],
         buttonText: "SAIBA MAIS",
-        buttonLink: "#", // Replace with actual link for Nira product page
+        buttonLink: "#",
       },
-      // Add more cards for Nira if available
     ],
   },
 ];
 ---
 
 <section class="bg-gray-100 py-10 md:py-20" aria-labelledby="products-heading">
-  <div
-    class="mx-auto mb-16 max-w-7xl px-4 text-center sm:px-6 md:text-left lg:px-8"
-  >
+  <div class="mx-auto mb-16 max-w-7xl text-center sm:px-6 md:text-left lg:px-8">
     <h2
       id="products-heading"
-      class="mb-4 text-3xl font-bold text-gray-900 md:mb-6 md:text-4xl lg:text-5xl"
+      class="mb-4 font-mono text-3xl font-bold text-gray-900 md:mb-6 md:text-4xl lg:text-5xl"
     >
       Da análise à ação:
       <span class="text-orange-500">nossas soluções te levam até lá.</span>
@@ -77,35 +91,34 @@ const products = [
         .filter((p) => p.id === "zeit-k")
         .map((product) => (
           <div
-            class="relative mb-16 bg-cover bg-center py-10 md:py-20"
-            style={`background-image: url('${product.image}');`}
+            class="relative mb-4 bg-cover bg-center py-10 md:py-20 rounded-md"
+            style={`background-image: url('${product.image.src}');
+                background-color: rgb(0, 0, 0, 0.35);
+                background-blend-mode: darken;`}
             aria-labelledby={`product-heading-${product.id}`}
           >
-            <div class="absolute inset-0 bg-black opacity-40" />{" "}
-            {/* Dark overlay for readability */}
             <h3 id={`product-heading-${product.id}`} class="sr-only">
               {product.name}
-            </h3>{" "}
-            {/* SR-only title for Zeit K */}
-            <div class="relative z-10 mx-auto w-full max-w-sm rounded-2xl bg-white/30 p-8 text-gray-800 shadow-xl backdrop-blur-md">
-              {" "}
-              {/* Now properly centered with mx-auto */}
+            </h3>
+            <div class="relative z-10 mx-auto w-full max-w-sm rounded-4xl bg-background/30 p-8 backdrop-blur-md">
               <div
                 class="product-card-carousel"
                 id={`carousel-${product.id}`}
                 data-product-id={product.id}
               >
                 {product.cards.map((card, cardIndex) => (
-                  <div class="product-card" data-card-index={cardIndex}>
-                    <img
-                      src={`/assets/logos/${product.id}-logo.svg`}
+                  <div class="product-card " data-card-index={cardIndex}>
+                    <Image
+                      src={product.logo}
                       alt={`${product.name} logo`}
-                      class="mx-auto mb-4 h-10"
+                      width={180}
+                      height={103}
+                      class="mx-auto mb-4"
                       loading="lazy"
                     />
-                    <p class="mb-6 text-center text-gray-200">
-                      {card.description}
-                    </p>
+                    {card.description.map((x) => (
+                      <p class="text-justify text-textlight indent-4">{x}</p>
+                    ))}
                     <div class="flex justify-center">
                       <a href={card.buttonLink}>
                         <PillButton>{card.buttonText}</PillButton>
@@ -135,29 +148,23 @@ const products = [
         ))
     }
 
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-4">
       {
         products
           .filter((p) => p.id === "zeit-agro" || p.id === "nira")
           .map((product) => (
             <div
-              class="relative bg-cover bg-center py-10 md:py-20"
-              style={`background-image: url('${product.image}');`}
+              class="relative bg-cover bg-center py-10 md:py-20 rounded-md"
+              style={`background-image: url('${product.image.src}');
+                background-color: rgb(0, 0, 0, 0.35);
+                background-blend-mode: darken;`}
               aria-labelledby={`product-heading-${product.id}`}
             >
-              <div class="absolute inset-0 bg-black opacity-40" />{" "}
-              {/* Dark overlay */}
-              {/* Product Title for Zeit Agro and Nira (visible on desktop) */}
-              <div class="relative z-10 text-center md:mb-6 md:text-left">
-                <h3
-                  id={`product-heading-${product.id}`}
-                  class="mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl"
-                >
-                  {product.name}
-                </h3>
-              </div>
+              <h3 id={`product-heading-${product.id}`} class="sr-only">
+                {product.name}
+              </h3>
               {/* Product Card Carousel */}
-              <div class="relative z-10 mx-auto w-full max-w-sm rounded-2xl bg-white/30 p-8 text-gray-800 shadow-xl backdrop-blur-md">
+              <div class="relative z-10 mx-auto w-full max-w-sm rounded-4xl bg-background/30 p-8 text-textlight backdrop-blur-md">
                 <div
                   class="product-card-carousel"
                   id={`carousel-${product.id}`}
@@ -165,17 +172,16 @@ const products = [
                 >
                   {product.cards.map((card, cardIndex) => (
                     <div class="product-card" data-card-index={cardIndex}>
-                      <img
-                        src={`/assets/logos/${product.id}-logo.svg`}
+                      <Image
+                        src={product.logo}
                         alt={`${product.name} logo`}
-                        class="mx-auto mb-4 h-10"
-                        loading="lazy"
+                        width={180}
+                        class="mx-auto mb-4"
                       />
-                      <p class="mb-6 text-center text-gray-200">
-                        {card.description}
-                      </p>
+                      {card.description.map((x) => (
+                        <p class="text-justify text-textlight indent-4">{x}</p>
+                      ))}
                       <div class="flex justify-center">
-                        {" "}
                         {/* Centering the button */}
                         <a href={card.buttonLink}>
                           <PillButton>{card.buttonText}</PillButton>
@@ -209,19 +215,16 @@ const products = [
 </section>
 
 <style>
-  /* Basic styling for hidden cards */
   .product-card {
     display: none;
   }
   .product-card[data-card-index="0"] {
-    /* Always show the first card by default */
     display: block;
   }
 </style>
 
 <script>
-  // Global function for carousel navigation, accessible from inline onclick
-  window.nextSlide = (carouselId, targetIndex) => {
+  function nextSlide(carouselId, targetIndex): void {
     const carousel = document.getElementById(carouselId);
     if (!carousel) return;
 
@@ -243,7 +246,7 @@ const products = [
         }
       }
     });
-  };
+  }
 
   document.addEventListener("DOMContentLoaded", () => {
     // Auto-advance logic for each carousel

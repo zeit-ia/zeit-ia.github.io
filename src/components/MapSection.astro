@@ -1,5 +1,6 @@
 ---
-
+import zeit_states from "../shared-images/zeit-states.png";
+import { Image } from "astro:assets";
 ---
 
 <section
@@ -33,11 +34,10 @@
     </div>
 
     <div class="relative z-10 flex items-center justify-center md:w-1/2">
-      <img
-        src="/zeit-states.png"
+      <Image
+        src={zeit_states}
         alt="Mapa do Brasil destacando os 8 estados onde a Zeit atua"
         class="h-auto w-full max-w-md md:max-w-full"
-        loading="lazy"
       />
     </div>
   </div>
