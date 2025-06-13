@@ -70,22 +70,24 @@ const products = [
 ---
 
 <section class="bg-gray-100 py-10 md:py-20" aria-labelledby="products-heading">
-  <div class="mx-auto mb-16 max-w-7xl text-center sm:px-6 md:text-left lg:px-8">
+  <div class="mx-auto mb-16 max-w-7xl">
     <h2
       id="products-heading"
-      class="mb-4 font-mono text-3xl font-bold text-gray-900 md:mb-6 md:text-4xl lg:text-5xl"
+      class="mb-4 font-mono text-3xl font-bold text-tesxtdark md:mb-6 md:text-4xl lg:text-5xl"
     >
-      Da análise à ação:
+      Da análise à ação: <br />
       <span class="text-orange-500">nossas soluções te levam até lá.</span>
     </h2>
-    <p class="mx-auto max-w-3xl text-lg text-gray-700 md:mx-0 md:text-xl">
-      As tecnologias da Zeit foram desenvolvidas para oferecer respostas rápidas
-      e seguras, para decisões assertivas. Com inovação e IA, transformamos
-      dados do campo em resultados concretos.
+    <p class="mx-auto text-lg text-textdark md:mx-0 md:text-xl">
+      As tecnologias da Zeit foram desenvolvidas para oferecer <b
+        >respostas rápidas</b
+      >
+      e seguras, para <b>decisões assertivas</b>. Com inovação e IA,
+      transformamos dados do campo em <b>resultados concretos</b>.
     </p>
   </div>
 
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <div class="mx-auto px-10">
     {
       products
         .filter((p) => p.id === "zeit-k")

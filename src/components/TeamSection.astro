@@ -1,11 +1,24 @@
 ---
-import { Image } from "astro:assets";
 import renan_buque from "./team/renan_buque.png";
 import paula from "./team/paula.png";
 import denilson from "./team/denilson.png";
 import andrieli from "./team/andrieli.png";
+import joelma from "./team/joelma.png";
+import paola from "./team/paola.png";
+import jacob from "./team/jacob.png";
+import renan_cechin from "./team/renan_cechin.png";
+import andriza from "./team/andriza.png";
+import lorenzo from "./team/lorenzo.png";
+import samuel from "./team/samuel.png";
+import gabrielle from "./team/gabrielle.png";
+import mel from "./team/mel.png";
+import camilly from "./team/camily.png";
+import alisson from "./team/alisson.png";
+import guilherme from "./team/guilherme.png";
 
 import type { TeamMember } from "../types";
+import Carousel from "./Carousel.astro";
+import Member from "./Member.astro";
 
 const teamMembers: TeamMember[] = [
   {
@@ -16,21 +29,95 @@ const teamMembers: TeamMember[] = [
   },
   {
     name: "Paula Dalla Vecchia",
-    role: "Cofundadora & Diretora de Operações P&D",
+    role: "Cofundadora & Diretora de Operações",
     imageUrl: paula,
     linkedinUrl: "https://www.linkedin.com/in/paula-dalla-vecchia/",
   },
   {
-    name: "Denílson Ebling",
+    name: "Denílson dos Santos Ebling",
     role: "Diretor de Tecnologia",
     imageUrl: denilson,
     linkedinUrl: "https://www.linkedin.com/in/denilson-ebling/",
+  },
+  {
+    name: "Alisson Billing",
+    role: "Coordenador de TI",
+    imageUrl: alisson,
+    linkedinUrl: "https://www.linkedin.com/in/alisson-billig-kroth-a394a2174/",
   },
   {
     name: "Andrieli Stefanello",
     role: "Coordenadora de P&D",
     imageUrl: andrieli,
     linkedinUrl: "https://www.linkedin.com/in/andrieli-stefanello/",
+  },
+  {
+    name: "Gabrielle Sanger",
+    role: "Cordenadora de Marketing.",
+    imageUrl: gabrielle,
+    linkedinUrl: "https://www.linkedin.com/in/gabrielle-sanger-343124196/",
+  },
+  {
+    name: "Joelma Sarturi",
+    role: "Coordenadora de Pesquisa Nira",
+    imageUrl: joelma,
+    linkedinUrl: "https://www.linkedin.com/in/andrieli-stefanello/",
+  },
+  {
+    name: "Renan Cecchin",
+    role: "Coordenador de IA",
+    imageUrl: renan_cechin,
+    linkedinUrl:
+      "https://www.linkedin.com/in/renan-de-siqueira-cecchin-62838b231/",
+  },
+  {
+    name: "Guilherme Mohr",
+    role: "Desenvolvedor Mobile",
+    imageUrl: guilherme,
+    linkedinUrl: "https://www.linkedin.com/in/alisson-billig-kroth-a394a2174/",
+  },
+  {
+    name: "João Jacobi",
+    role: "Auxiliar de P&D",
+    imageUrl: jacob,
+    linkedinUrl:
+      "https://www.linkedin.com/in/jo%C3%A3o-vitor-jacobi-61626123b/",
+  },
+  {
+    name: "Samuel Dias",
+    role: "Desenvolvedor Web",
+    imageUrl: samuel,
+    linkedinUrl: "https://www.linkedin.com/in/samud03/",
+  },
+  {
+    name: "Andriza Campanhol",
+    role: "Bolsista de IA",
+    imageUrl: andriza,
+    linkedinUrl: "https://www.linkedin.com/in/andrizacampanhol/",
+  },
+  {
+    name: "Camilly Messias",
+    role: "Bolsista de Marketing",
+    imageUrl: camilly,
+    linkedinUrl: null,
+  },
+  {
+    name: "Lorenzo Weber",
+    role: "Bolsista de IA",
+    imageUrl: lorenzo,
+    linkedinUrl: "https://www.linkedin.com/in/lorenzo-weber-520a27218/",
+  },
+  {
+    name: "Mel Ruiz",
+    role: "Bolsista de Marketing",
+    imageUrl: mel,
+    linkedinUrl: "https://www.linkedin.com/in/mel-ruiz-086a48217/",
+  },
+  {
+    name: "Paola Selau",
+    role: "Bolsista de P&D",
+    imageUrl: paola,
+    linkedinUrl: "https://www.linkedin.com/in/paola-oliveira-selau-2b8572266/",
   },
 ];
 ---
@@ -57,52 +144,6 @@ const teamMembers: TeamMember[] = [
       </p>
     </header>
 
-    <div class="grid gap-8 grid-cols-2 md:grid-cols-4">
-      {
-        teamMembers.map((member) => (
-          <article class="flex flex-col overflow-hidden rounded-lg bg-white">
-            <figure class="relative h-60 w-full">
-              <Image
-                src={member.imageUrl}
-                height={230 * 4}
-                alt={`Foto de perfil de ${member.name}`}
-                class="h-full w-full object-cover object-top"
-                loading="lazy"
-              />
-            </figure>
-            <div class="flex flex-grow flex-col p-6">
-              <h3 class="mb-1 text-xl font-semibold text-textdark">
-                {member.name}
-              </h3>
-              <p class="mb-4 text-sm text-textdark font-medium">
-                {member.role}
-              </p>
-              <a
-                href={member.linkedinUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="focus:ring-opacity-50 mt-auto inline-flex items-center rounded-md text-gray-500 transition-colors hover:text-blue-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                aria-label={`Perfil de LinkedIn de ${member.name}`}
-              >
-                <svg
-                  class="mr-1 h-5 w-5"
-                  fill="currentColor"
-                  viewBox="0 0 256 256"
-                  aria-hidden="true"
-                >
-                  <path d="M218.123 218.127h-37.931v-59.403c0-14.165-.253-32.4-19.728-32.4-19.756 0-22.779 15.434-22.779 31.369v60.43h-37.93V95.967h36.413v16.694h.51a39.907 39.907 0 0 1 35.928-19.733c38.445 0 45.533 25.288 45.533 58.186l-.016 67.013ZM56.955 79.27c-12.157.002-22.014-9.852-22.016-22.009-.002-12.157 9.851-22.014 22.008-22.016 12.157-.003 22.014 9.851 22.016 22.008A22.013 22.013 0 0 1 56.955 79.27m18.966 138.858H37.95V95.967h37.97v122.16ZM237.033.018H18.89C8.58-.098.125 8.161-.001 18.471v219.053c.122 10.315 8.576 18.582 18.89 18.474h218.144c10.336.128 18.823-8.139 18.966-18.474V18.454c-.147-10.33-8.635-18.588-18.966-18.453" />
-                </svg>
-              </a>
-            </div>
-          </article>
-        ))
-      }
-    </div>
-
-    <div class="mt-16 text-center">
-      <span
-        class="inline-block h-3 w-3 rounded-full bg-green-500"
-        aria-hidden="true"></span>
-    </div>
+    <Carousel items={teamMembers} />
   </div>
 </section>

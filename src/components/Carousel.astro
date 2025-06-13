@@ -1,0 +1,141 @@
+---
+import Member from './Member.astro';
+import type { TeamMember } from '../types.ts';
+
+export interface Props {
+  items: TeamMember[];
+}
+
+const { items } = Astro.props as Props;
+
+const itemsPerPage = 4;
+const totalPages = Math.ceil(items.length / itemsPerPage);
+---
+
+    <div class="relative flex items-center justify-between">
+    {/*       <button
+        id="prevButton"
+        class="absolute left-0 z-10 p-3 bg-gray-800 text-white rounded-full shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 -translate-x-1/2"
+        aria-label="Previous items"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+*/}
+
+      <div class="flex-grow overflow-x-auto px-10">
+        <div
+          id="carouselItemsContainer"
+          class="flex transition-transform duration-500 ease-in-out sc"
+        >
+          {
+          items.map(item => (
+            <div class="w-1/4 h-full flex-shrink-0 px-2" >
+              <Member member={item} />
+            </div>
+          ))
+          }
+        </div>
+      </div>
+
+{/*       <button
+        id="nextButton"
+        class="absolute right-0 z-10 p-3 bg-gray-800 text-white rounded-full shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 translate-x-1/2"
+        aria-label="Next items"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+*/}
+    </div>
+
+    {/* Pagination Dots */}
+    <div id="paginationDots" class="flex justify-center mt-6 space-x-2">
+      {/* Dots will be generated dynamically by JavaScript */}
+    </div>
+
+<script is:inline>
+  // Get references to DOM elements
+  const carouselItemsContainer = document.getElementById('carouselItemsContainer');
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
+  const paginationDotsContainer = document.getElementById('paginationDots');
+
+  // These values are passed from Astro props and are available in the script scope
+  // {items.length} is dynamically inserted by Astro build process
+  const allItems = {
+    length: {items.length}
+  };
+  const itemsPerPage = 4;
+  const totalPages = Math.ceil(allItems.length / itemsPerPage);
+
+  let currentIndex = 0; // State equivalent
+
+  // Function to update the carousel's position
+  const updateCarousel = () => {
+    const carouselTransform = `translateX(-${(currentIndex / itemsPerPage) * 100}%)`;
+    carouselItemsContainer.style.transform = carouselTransform;
+    updatePaginationDots();
+  };
+
+  // Function to update the active pagination dot
+  const updatePaginationDots = () => {
+    // Clear existing dots
+    paginationDotsContainer.innerHTML = '';
+
+    // Create new dots
+    for (let i = 0; i < totalPages; i++) {
+      const dotButton = document.createElement('button');
+      dotButton.classList.add('h-3', 'w-3', 'rounded-full', 'focus:outline-none', 'focus:ring-2', 'focus:ring-gray-500');
+      dotButton.setAttribute('aria-label', `Go to page ${i + 1}`);
+
+      if (currentIndex / itemsPerPage === i) {
+        dotButton.classList.add('bg-gray-800');
+      } else {
+        dotButton.classList.add('bg-gray-300');
+      }
+
+      // Add click listener for pagination dots
+      dotButton.addEventListener('click', () => {
+        currentIndex = i * itemsPerPage;
+        updateCarousel();
+      });
+      paginationDotsContainer.appendChild(dotButton);
+    }
+  };
+
+  // Event listener for Next button
+  nextButton.addEventListener('click', () => {
+    currentIndex =
+      currentIndex + itemsPerPage >= allItems.length ? 0 : currentIndex + itemsPerPage;
+    updateCarousel();
+  });
+
+  // Event listener for Previous button
+  prevButton.addEventListener('click', () => {
+    currentIndex =
+      currentIndex - itemsPerPage < 0 ? (totalPages - 1) * itemsPerPage : currentIndex - itemsPerPage;
+    updateCarousel();
+  });
+
+  // Initial update when the component loads
+  updateCarousel();
+</script>
