@@ -7,14 +7,14 @@ import zeitagro_logo from "../shared-images/zeitagro-logo.svg";
 import zeitagro_bg from "../shared-images/zeitagro-bg.jpg";
 
 import PillButton from "./PillButton.astro";
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 
 const products = [
   {
     id: "zeit-k",
     name: "Zeit K",
     logo: zeitk_logo,
-    image: zeitk_bg,
+    image: await getImage({ src: zeitk_bg }),
     alt: "Green plant leaves and a soil sample, representing Zeit K technology.",
     cards: [
       {
@@ -33,7 +33,7 @@ const products = [
     id: "zeit-agro",
     name: "Zeit Agro",
     logo: zeitagro_logo,
-    image: zeitagro_bg,
+    image: await getImage({ src: zeitagro_bg }),
     alt: "View of a vast agricultural field with a tractor in the distance, representing Zeit Agro platform.",
     cards: [
       {
@@ -51,7 +51,7 @@ const products = [
     id: "nira",
     name: "Nira",
     logo: nira_logo,
-    image: nira_bg,
+    image: await getImage({ src: nira_bg }),
     alt: "Close-up of dried seeds, representing Nira analysis technology.",
     cards: [
       {
