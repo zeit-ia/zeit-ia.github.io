@@ -8,7 +8,6 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://zeit-ia.github.io',
-  base: 'landing-page',
 
   vite: {
     plugins: [tailwindcss()],
