@@ -15,20 +15,28 @@
       </div>
 
       <div class="space-y-6 md:w-1/2">
-        {
-          /* TODO: a outer box with a translate x/y should be able to do the "shadow box" */
-        }
-        <div class="flex aspect-video items-center justify-center">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/2I5Yt6zI72Y?si=wmzPogFGB5QaGfgy&controls=0"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            loading="lazy"
-            allowfullscreen></iframe>
+        <div
+          class="grid grid-cols-1 grid-rows-1 w-[560px] h-[315px] my-16 mx-auto"
+        >
+          <div
+            class="row-start-1 col-start-1 flex rounded-xl z-2 overflow-hidden"
+          >
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/2I5Yt6zI72Y?si=wmzPogFGB5QaGfgy&controls=0"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              loading="lazy"
+              allowfullscreen></iframe>
+          </div>
+
+          <div
+            class="row-start-1 col-start-1 bg-accent-two scale-90 flex translate-x-1/10 -translate-y-1/6 z-1 rounded-xl"
+          >
+          </div>
         </div>
 
         <p class="text-base text-left">
