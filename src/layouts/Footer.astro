@@ -1,5 +1,8 @@
 ---
-import WpLogo from "../shared-images/WhatsApp.svg";
+import WpLogo from "../shared-images/social_whatsapp.svg";
+import LogoInstagram from "../shared-images/social_instagram.svg";
+import LogoFacebook from "../shared-images/social_facebook.svg";
+import LogoLinkedin from "../shared-images/social_linkedin.svg";
 import Zeit from "../shared-images/zeit-dark.svg";
 
 const currentYear = new Date().getFullYear();
@@ -8,65 +11,37 @@ const currentYear = new Date().getFullYear();
 <footer class="bg-white py-10 text-white">
   <div class="container mx-auto px-4 text-center">
     <Zeit width={94} class="mx-auto mb-6 h-12" />
-    <p class="mb-6 text-lg text-gray-400">
+    <p class="mb-6 text-lg text-textdark">
       Copyright &copy; <span id="currentYear">{currentYear}</span> Zeit
     </p>
     <div class="flex justify-center space-x-6">
       <a
-        href="https://wa.me/yourwhatsappnumber"
+        href="https://wa.me/message/MCNLVBUJYSRPO1"
         target="_blank"
         aria-label="WhatsApp"
-        class="text-black"
       >
-        <WpLogo height={24} width={24} class="fill-current" />
+        <WpLogo height={24} width={24} class="fill-textdark" />
       </a>
       <a
-        href="https://www.instagram.com/yourinstagramprofile"
+        href="https://www.instagram.com/zeit.ia"
         target="_blank"
         aria-label="Instagram"
-        class="text-white hover:text-gray-300"
       >
-        <svg
-          class="h-8 w-8 fill-current"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M7.8 2c-2.656 0-3.57.01-4.83.078C1.564 2.146.568 3.14.078 4.37c-.068 1.26-.078 2.174-.078 4.83s.01 3.57.078 4.83c.092 1.228 1.088 2.22 2.37 2.372 1.26.068 2.174.078 4.83.078s3.57-.01 4.83-.078c1.228-.092 2.22-1.088 2.372-2.37 0-1.26.078-2.174.078-4.83s-.01-3.57-.078-4.83c-.092-1.228-1.088-2.22-2.37-2.372C11.372 2.01 10.458 2 7.8 2zm0 1.5c2.518 0 3.376.01 4.542.074 1.054.062 1.55.438 1.838.728.29.29.666.784.728 1.838.064 1.166.074 2.024.074 4.542s-.01 3.376-.074 4.542c-.062 1.054-.438 1.55-.728 1.838-.29.29-.784.666-1.838.728-1.166.064-2.024.074-4.542.074s-3.376-.01-4.542-.074c-1.054-.062-1.55-.438-1.838-.728-.29-.29-.666-.784-.728-1.838-.064-1.166-.074-2.024-.074-4.542s.01-3.376.074-4.542c.062-1.054.438-1.55.728-1.838.29-.29.784-.666 1.838-.728C4.424 3.51 5.282 3.5 7.8 3.5zM12 7a5 5 0 100 10 5 5 0 000-10zm0 1.5a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm5.5-2a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"
-          ></path>
-        </svg>
+        <LogoInstagram height={24} width={24} class="fill-textdark" />
       </a>
       <a
-        href="https://www.facebook.com/yourfacebookprofile"
+        href="https://www.facebook.com/zeitbr"
         target="_blank"
         aria-label="Facebook"
-        class="text-white hover:text-gray-300"
       >
-        <svg
-          class="h-8 w-8 fill-current"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm2.083 8.358h-1.956v-1.19c0-.498.07-.745.745-.745h1.211V7.545h-1.59c-1.954 0-2.613 1.246-2.613 2.535v1.478H9.375v2.247h1.495v5.441h2.247v-5.441h1.996l.299-2.247z"
-          ></path>
-        </svg>
+        <LogoFacebook height={24} width={24} class="fill-textdark" />
       </a>
       <a
-        href="https://www.linkedin.com/in/yourlinkedinprofile"
+        href="https://www.linkedin.com/company/zeitia/"
         target="_blank"
         aria-label="LinkedIn"
-        class="text-white hover:text-gray-300"
       >
-        <svg
-          class="h-8 w-8 fill-current"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-3.375 16.375h-2.25V9.75h2.25v8.625zm-1.125-9.625c-.75 0-1.375-.625-1.375-1.375S7.75 6 8.5 6s1.375.625 1.375 1.375-.625 1.375-1.375 1.375zm7.875 9.625h-2.25v-4.5c0-1.125-.5-1.5-1.25-1.5-.75 0-1.25.5-1.25 1.5v4.5h-2.25v-5.625h2.25v.75c.375-.625.875-1.125 1.75-1.125 1.25 0 2.25.875 2.25 2.5v3.5z"
-          ></path>
-        </svg>
+        <LogoLinkedin height={24} width={24} class="fill-textdark" />
       </a>
     </div>
   </div>
