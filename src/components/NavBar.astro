@@ -9,15 +9,17 @@ const navItems = [
 ];
 ---
 
-<header class="relative z-10 mx-4 mt-14">
+<header class="mt-14 mx-6 md:mx-20 xl:mx-28">
   <nav
-    class="flex items-center justify-between rounded-full border-0 bg-white/10 px-8 py-4 shadow-lg backdrop-blur-md"
+    class="flex items-center justify-between max-lg:rounded-full px-8 py-4 max-lg:bg-white/10 max-lg:backdrop-blur-md"
   >
     <!-- Logo -->
     <Zeit width={94} />
 
     <!-- Desktop Navigation Menu -->
-    <div class="hidden items-center space-x-8 md:flex">
+    <div
+      class="hidden lg:bg-white/10 lg:backdrop-blur-md lg:rounded-full lg:px-8 lg:py-4 items-center space-x-8 md:flex"
+    >
       {
         navItems.map((item) => (
           <a
