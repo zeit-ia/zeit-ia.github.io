@@ -18,6 +18,7 @@ import guilherme from "./team/guilherme.png";
 
 import type { TeamMember } from "../types";
 import Carousel from "./Carousel.astro";
+import Member from "./Member.astro";
 
 const teamMembers: TeamMember[] = [
   {
@@ -143,6 +144,8 @@ const teamMembers: TeamMember[] = [
       </p>
     </header>
 
-    <Carousel items={teamMembers} />
+    <Carousel>
+      {teamMembers.map((m) => <Member member={m} />)}
+    </Carousel>
   </div>
 </section>

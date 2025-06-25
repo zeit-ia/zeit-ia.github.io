@@ -9,17 +9,17 @@ interface Props {
 const { member } = Astro.props;
 ---
 
-<article class="rounded-xl bg-white flex flex-col h-full min-h-[420px]">
-  <figure class="relative h-60 w-full">
+<article class="rounded-lg bg-white flex flex-col h-full">
+  <figure class="relative h-72 w-full">
     <Image
       src={member.imageUrl}
-      height={230 * 4}
+      height={230 * 3}
       alt={`Foto de perfil de ${member.name}`}
       class="h-full w-full object-cover object-top rounded-t-xl"
-      loading="eager"
+      loading="lazy"
     />
   </figure>
-  <div class="flex flex-grow flex-col pt-4 p-4">
+  <div class="flex flex-col justify-between h-40 p-4">
     <h3 class="mb-1 text-lg md:text-xl font-bold text-textdark text-left">
       {member.name}
     </h3>
@@ -32,7 +32,7 @@ const { member } = Astro.props;
       href={member.linkedinUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="focus:ring-opacity-50 mt-auto inline-flex items-center rounded-md text-textdark font-bold transition-colors hover:text-blue-600 focus:ring-2 focus:ring-blue-500 focus:outline-none text-left"
+      class="transition-colors hover:text-blue-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
       aria-label={`Perfil de LinkedIn de ${member.name}`}
     >
       <svg
@@ -47,7 +47,7 @@ const { member } = Astro.props;
       </svg>
     </a>
       
-    ) : <></>
+    ) : <div><div/>
     }
   </div>
 </article>
