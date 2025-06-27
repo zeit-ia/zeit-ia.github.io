@@ -97,7 +97,7 @@ const products = [
         .filter((p) => p.id === "zeit-k")
         .map((product) => (
           <div
-            class="relative mb-4 bg-cover bg-center py-10 md:py-20 rounded-md"
+            class="mb-4 bg-cover bg-center px-4 py-10 md:py-20 rounded-md"
             style={`background-image: url('${product.image.src}');
                 background-color: rgb(0, 0, 0, 0.35);
                 background-blend-mode: darken;`}
@@ -106,7 +106,7 @@ const products = [
             <h3 id={`product-heading-${product.id}`} class="sr-only">
               {product.name}
             </h3>
-            <div class="relative z-10 mx-auto w-full max-w-sm rounded-4xl bg-background/30 p-8 backdrop-blur-md">
+            <div class="max-w-sm mx-auto rounded-4xl bg-background/30 p-4 backdrop-blur-md">
               <div
                 class="product-card-carousel"
                 id={`carousel-${product.id}`}
@@ -160,7 +160,7 @@ const products = [
           .filter((p) => p.id === "zeit-agro" || p.id === "nira")
           .map((product) => (
             <div
-              class="relative bg-cover bg-center py-10 md:py-20 rounded-md"
+              class="bg-cover bg-center px-4 py-10 md:py-20 rounded-md"
               style={`background-image: url('${product.image.src}');
                 background-color: rgb(0, 0, 0, 0.35);
                 background-blend-mode: darken;`}
@@ -170,7 +170,7 @@ const products = [
                 {product.name}
               </h3>
               {/* Product Card Carousel */}
-              <div class="relative z-10 mx-auto w-full max-w-sm rounded-4xl bg-background/30 p-8 text-textlight backdrop-blur-md">
+              <div class="mx-auto w-full max-w-sm rounded-4xl bg-background/30 p-8 text-textlight backdrop-blur-md">
                 <div
                   class="product-card-carousel"
                   id={`carousel-${product.id}`}
