@@ -6,7 +6,7 @@ import nira_bg from "../shared-images/nira-bg.jpg";
 import zeitagro_logo from "../shared-images/zeitagro-logo.svg";
 import zeitagro_bg from "../shared-images/zeitagro-bg.jpg";
 
-import PillButton from "./PillButton.astro";
+// import PillButton from "./PillButton.astro";
 import { Image, getImage } from "astro:assets";
 
 const products = [
@@ -91,7 +91,7 @@ const products = [
     </p>
   </div>
 
-  <div class="mx-auto px-10">
+  <div class="mx-auto px-4 md:px-10">
     {
       products
         .filter((p) => p.id === "zeit-k")
@@ -126,9 +126,9 @@ const products = [
                       <p class="text-left text-textlight">{x}</p>
                     ))}
                     <div class="flex justify-center mt-10">
-                      <a href={card.buttonLink}>
-                        <PillButton>{card.buttonText}</PillButton>
-                      </a>
+                      <!-- <a href={card.buttonLink}> -->
+                        <!-- <PillButton>{card.buttonText}</PillButton> -->
+                      <!-- </a> -->
                     </div>
                   </div>
                 ))}
@@ -191,9 +191,9 @@ const products = [
                         <p class="text-left text-textlight">{x}</p>
                       ))}
                       <div class="flex justify-center mt-10">
-                        <a href={card.buttonLink}>
-                          <PillButton>{card.buttonText}</PillButton>
-                        </a>
+                        <!-- <a href={card.buttonLink}> -->
+                          <!-- <PillButton>{card.buttonText}</PillButton> -->
+                        <!-- </a> -->
                       </div>
                     </div>
                   ))}
