@@ -1,18 +1,36 @@
 ---
-import { Font } from "astro:assets";
+import { Font, getImage } from "astro:assets";
+
+import ogImage from "../shared-images/og_image.png";
 
 import "../styles/global.css";
+
+const optimizedOgImage = await getImage({ src: ogImage });
 ---
 
 <!doctype html>
 <html lang="pt-BR" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href={Astro.site} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta
+      name="description"
+      content="O futuro da sua produção começa com uma decisão agora."
+    />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content="O futuro da sua produção começa com uma decisão agora." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zeit</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.site} />
+    <meta property="og:title" content="Zeit" />
+    <meta
+      property="og:description"
+      content="O futuro da sua produção começa com uma decisão agora."
+    />
+    <meta property="og:image" content={optimizedOgImage.src} />
+    <meta property="og:site_name" content="Zeit" />
 
     <Font cssVariable="--font-nunito" preload />
     <Font cssVariable="--font-fragment" preload />
