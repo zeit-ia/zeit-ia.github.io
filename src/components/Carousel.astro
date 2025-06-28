@@ -109,19 +109,14 @@
   const updatePaginationDots = () => {
     paginationDotsContainer.innerHTML = "";
     for (let i = 0; i < totalPages; i++) {
-      const dotButton = document.createElement("button");
+      const dotButton = document.createElement("div");
       dotButton.classList.add("h-3", "rounded-full");
       // FIXME: internacionalizacao
-      dotButton.setAttribute("aria-label", `Go to page ${i + 1}`);
       if (currentPage === i) {
         dotButton.classList.add("bg-accent-one", "w-6");
       } else {
         dotButton.classList.add("bg-background", "w-3");
       }
-      dotButton.addEventListener("click", () => {
-        currentPage = i;
-        updateCarousel();
-      });
       paginationDotsContainer.appendChild(dotButton);
     }
   };
