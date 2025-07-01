@@ -21,11 +21,13 @@ export default defineConfig({
         provider: fontProviders.google(),
         name: "Nunito",
         cssVariable: "--font-nunito",
+        display: "swap",
       },
       {
         provider: fontProviders.google(),
         name: "Fragment Mono",
         cssVariable: "--font-fragment",
+        display: "swap",
       },
     ],
   },

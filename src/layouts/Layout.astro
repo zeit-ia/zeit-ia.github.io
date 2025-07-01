@@ -5,7 +5,7 @@ import ogImage from "../shared-images/og_image.png";
 
 import "../styles/global.css";
 
-const optimizedOgImage = await getImage({ src: ogImage });
+const optimizedOgImage = await getImage({ src: ogImage, format: "png" });
 ---
 
 <!doctype html>
@@ -23,11 +23,15 @@ const optimizedOgImage = await getImage({ src: ogImage });
     <title>Zeit</title>
 
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
     <meta property="og:url" content={Astro.site} />
-    <meta property="og:title" content="Zeit" />
+    <meta
+      property="og:title"
+      content="Zeit - Inteligência Artificial para o Agronegócio"
+    />
     <meta
       property="og:description"
-      content="O futuro da sua produção começa com uma decisão agora."
+      content="Descubra como a tecnologia pode salvar a sua lavour"
     />
     <meta property="og:image" content={optimizedOgImage.src} />
     <meta property="og:site_name" content="Zeit" />
