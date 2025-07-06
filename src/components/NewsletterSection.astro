@@ -1,34 +1,35 @@
 ---
-import PillButton from "./PillButton.astro";
+import { Image } from "astro:assets"
 
-// src/components/NewsletterSection.astro
-// Data for the recent articles/posts, as seen in the Newsletter im/zeit-states.png.
-// Adjust paths and content as per your actual articles.
+import PillButton  from "../components/PillButton.astro"
+
+import post1 from '../shared-images/post1.jpg'
+import post2 from '../shared-images/post2.jpg'
+import post3 from '../shared-images/post3.jpg'
+
+
 const articles = [
   {
     title:
       "Use a nossa tecnologia para monitorar os níveis de potássio na sua plantação",
-    image: "./zeit-states.png", // Update with actual image path
-    alt: "Close-up of a plant sprout in soil with a green circular monitor, illustrating potassium monitoring technology.",
-    date: "1 mês atrás", // 1 month ago
-    link: "#", // Replace with actual article link
+    image: post1,
+    date: "16/04",
+    link: "https://www.linkedin.com/posts/zeitia_zeitk-tecnologianoagro-manejodeprecisaeto-activity-7318604186927951873-mnX5?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbLImYBq5UivsS5NVDsDWvdqrnE5AnmK9o"
+  },
+  {
+    title: "Mais eficiência e lucratividade na sua plantação com o uso da inteligência artificial",
+    image: post2,
+    date: "26/06",
+    link: "https://www.linkedin.com/posts/zeitia_zeit-inovaaexaetonoagro-inteligaeanciaartificial-activity-7342989829896294400-aJxZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbLImYBq5UivsS5NVDsDWvdqrnE5AnmK9o",
   },
   {
     title:
-      "Você sabe a importância de tomar decisões rápidas na sua plantação?",
-    image: "./zeit-states.png", // Update with actual image path
-    alt: 'Text overlays "Imprevistos acontecem. Dados certos = Ação na hora certa." with illustrations of leaves and a plant, representing quick decision-making in agriculture.',
-    date: "1 semana atrás", // 1 week ago
-    link: "#", // Replace with actual article link
+      "Co-fundadora da Zeit está entre as 2 gaúchas selecionadas para o prêmio Empretec Women in Business",
+    image: post3,
+    date: "13/06",
+    link: "https://www.linkedin.com/posts/paula-dalla-vecchia-60b64913a_empretec-inovaaexaeto-lideranaexafeminina-activity-7339394955129380865-FyE5?utm_source=share&utm_medium=member_desktop&rcm=ACoAADbLImYBq5UivsS5NVDsDWvdqrnE5AnmK9o"
   },
-  {
-    title:
-      "Nossa cofundadora recebe o troféu de 1º lugar do programa mulheres inovadoras 2024 no Web Summit Rio",
-    alt: "Two women, one holding a trophy, smiling and standing in front of a conference background, depicting the cofounder winning an innovation award.",
-    date: "1 mês atrás", // 1 month ago
-    link: "#", // Replace with actual article link
-  },
-];
+] as const;
 ---
 
 <section class="bg-white py-10 md:py-20" aria-labelledby="newsletter-heading">
@@ -48,7 +49,7 @@ const articles = [
     </p>
 
     <div
-      class="mb-16 grid grid-cols-1 justify-items-center gap-8 md:grid-cols-2 md:justify-items-start lg:grid-cols-3"
+      class="mb-16 grid grid-cols-1 auto-rows-fr justify-items-center gap-8 md:grid-cols-2 md:justify-items-start lg:grid-cols-3"
     >
       {
         articles.map((article) => (
@@ -56,18 +57,20 @@ const articles = [
             href={article.link}
             target="_blank"
             rel="noopener noreferrer"
-            class="block w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:outline-none"
+            class="h-full flex flex-col max-w-sm rounded-lg bg-white transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-xl overflow-hidden"
             aria-label={`Read more about: ${article.title}`}
           >
-            <img
+        <figure class="relative h-72 w-full">
+            <Image
               src={article.image}
-              alt={article.alt}
-              class="h-48 w-full object-cover"
+              alt=""
+              height={800}
+              width={1000}
+              class="h-full w-full object-cover object-center"
               loading="lazy"
             />
-            <div class="bg-orange-500 p-6 text-white">
-              {" "}
-              {/* Orange background section */}
+        </figure>
+            <div class="bg-accent-one text-white p-6 h-50 ">
               <h3 class="mb-2 text-xl font-semibold">{article.title}</h3>
               <p class="text-sm">{article.date}</p>
             </div>
@@ -79,42 +82,20 @@ const articles = [
     <h3
       class="mb-6 text-center font-mono text-xl font-bold text-gray-900 md:text-2xl"
     >
-      Insira seu e-mail para receber a newsletter
+      Quer receber as últimas notícias da Zeit? 
     </h3>
 
-    <form
-      class="mx-auto flex max-w-md flex-col gap-4 md:flex-row md:items-center"
-      aria-label="Newsletter Subscription Form"
+    <div
+      class="mx-auto flex justify-center"
     >
-      <label for="firstName" class="sr-only">Primeiro Nome</label>
-      <input
-        type="text"
-        id="firstName"
-        name="firstName"
-        placeholder="Primeiro Nome"
-        autocomplete="given-name"
-        class="w-full rounded-md bg-gray-50 p-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-orange-500 focus:outline-none md:w-1/2"
-        aria-required="false"
-      />
-
-      <label for="email" class="sr-only">E-mail</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="E-mail"
-        autocomplete="email"
-        required
-        class="w-full rounded-md bg-gray-50 p-3 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-orange-500 focus:outline-none md:w-1/2"
-        aria-required="true"
-      />
-
-      <button
-        type="submit"
-        class="w-full flex-shrink-0 rounded-md bg-orange-500 px-6 py-3 font-semibold text-white shadow-md transition-colors duration-300 hover:bg-orange-600 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:outline-none md:w-auto"
-      >
-        QUERO ACOMPANHAR
-      </button>
-    </form>
+      <a href="https://forms.gle/V7PBDbMLxqymbRJ89" 
+        target="_blank"
+        rel="noopener noreferrer"
+      > 
+        <PillButton style="accent">
+          QUERO ACOMPANHAR
+          </button>
+          </a>
+    </div>
   </div>
 </section>
