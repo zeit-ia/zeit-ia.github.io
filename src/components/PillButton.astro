@@ -1,21 +1,20 @@
 ---
 const styles = {
   white: "bg-background hover:bg-brand-secondary text-brand-primary",
-  accent: "bg-accent-two hover:bg-[#DD8200] text-textlight"
+  accent: "bg-accent-two hover:bg-[#DD8200] text-textlight",
 };
 
 interface Props {
   style?: keyof typeof styles;
 }
 
-const { style = "white", } = Astro.props;
+const { style = "white" } = Astro.props;
 
 const styleCss = styles[style];
-
-
 ---
+
 <button
-  class={`bg-opacity-90 hover:bg-opacity-100 text-brand-primary rounded-full px-6 py-4 font-sans font-extrabold tracking-wide uppercase transition-colors duration-500  focus:outline-none text-lg ${styleCss}`}
+  class={`bg-opacity-90 hover:bg-opacity-100 text-brand-primary rounded-full px-6 py-4 font-sans font-extrabold tracking-wide uppercase transition-colors duration-500  focus:outline-none text-lg w-full ${styleCss}`}
 >
   <slot />
 </button>

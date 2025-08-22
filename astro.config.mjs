@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://zeit.com.br',
+  site: "https://zeit.com.br",
 
   vite: {
     plugins: [tailwindcss()],

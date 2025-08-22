@@ -9,22 +9,22 @@ interface Props {
 const { member } = Astro.props;
 ---
 
-<article class="rounded-lg bg-white flex flex-col h-full">
+<article class="flex h-full flex-col rounded-lg bg-white">
   <figure class="relative h-72 w-full">
     <Image
       src={member.imageUrl}
       height={230 * 3}
       alt={`Foto de perfil de ${member.name}`}
-      class="h-full w-full object-cover object-top rounded-t-xl"
+      class="h-full w-full rounded-t-xl object-cover object-top"
       layout="fixed"
       loading="lazy"
     />
   </figure>
-  <div class="flex flex-col justify-between h-40 p-4">
-    <h3 class="mb-1 text-lg md:text-xl font-bold text-textdark text-left">
+  <div class="flex h-48 flex-col justify-between p-4">
+    <h3 class="text-textdark mb-1 text-left text-lg font-bold md:text-xl">
       {member.name}
     </h3>
-    <p class="mb-4 text-sm text-textdark text-left font-normal">
+    <p class="text-textdark mb-4 text-left text-sm font-normal">
       {member.role}
     </p>
     {
