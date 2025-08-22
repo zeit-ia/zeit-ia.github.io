@@ -4,7 +4,7 @@ import PillButton from "./PillButton.astro";
 
 <section
   id="contact"
-  class="bg-gray-900 py-10 text-white md:py-20"
+  class="bg-brand-primary text-textlight py-10 md:py-20"
   aria-labelledby="contact-heading"
 >
   <div
@@ -13,74 +13,24 @@ import PillButton from "./PillButton.astro";
     <div class="text-center md:text-left">
       <h2
         id="contact-heading"
-        class="mb-4 text-3xl font-bold md:mb-6 md:text-4xl lg:text-5xl"
+        class="text-brand-secondary mb-4 font-mono text-3xl font-bold md:mb-6 md:text-4xl lg:text-5xl"
       >
         Sua jornada com mais controle e rentabilidade começa aqui.
       </h2>
-      <p class="mx-auto max-w-xl text-lg text-gray-300 md:mx-0 md:text-xl">
+      <p class="text-textlight mx-auto max-w-xl text-lg md:mx-0 md:text-xl">
         Entre em contato e descubra como nossa tecnologia pode transformar a sua
         produção — e o seu negócio.
       </p>
     </div>
 
     <div class="mx-auto w-full max-w-lg md:mr-0 md:ml-auto">
-      <form class="flex flex-col gap-4" aria-label="Contact Form">
-        <label for="name" class="sr-only">Nome</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Nome"
-          autocomplete="name"
-          class="w-full rounded-md bg-gray-700 p-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-accent-one focus:ring-offset-2 focus:ring-offset-gray-900 focus:outline-none"
-          aria-required="true"
-        />
-
-        <label for="company" class="sr-only">Empresa/Instituição</label>
-        <input
-          type="text"
-          id="company"
-          name="company"
-          placeholder="Empresa/Instituição"
-          autocomplete="organization"
-          class="w-full rounded-md bg-gray-700 p-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-accent-one focus:ring-offset-2 focus:ring-offset-gray-900 focus:outline-none"
-          aria-required="false"
-        />
-
-        <label for="phone" class="sr-only">Telefone</label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder="Telefone"
-          autocomplete="tel"
-          class="w-full rounded-md bg-gray-700 p-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-accent-one focus:ring-offset-2 focus:ring-offset-gray-900 focus:outline-none"
-          aria-required="false"
-        />
-
-        <label for="email" class="sr-only">E-mail</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="E-mail"
-          autocomplete="email"
-          required
-          class="w-full rounded-md bg-gray-700 p-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-accent-one focus:ring-offset-2 focus:ring-offset-gray-900 focus:outline-none"
-          aria-required="true"
-        />
-
-        <label for="message" class="sr-only">Nos conte sobre você</label>
-        <textarea
-          id="message"
-          name="message"
-          rows="5"
-          placeholder="Nos conte sobre você"
-          class="w-full resize-y rounded-md bg-gray-700 p-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-accent-one focus:ring-offset-2 focus:ring-offset-gray-900 focus:outline-none"
-          aria-required="false"></textarea>
-
-        <PillButton> FALAR COM UM ESPECIALISTA </PillButton>
-      </form>
+      <a
+        href="https://tjoyx.share.hsforms.com/2EeHI4jClTlaIpOjVXtDl-A"
+        target="_blank"
+        aria-label="Entre e contato"
+      >
+        <PillButton> Entre em contato </PillButton>
+      </a>
     </div>
   </div>
 </section>
