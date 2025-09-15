@@ -1,0 +1,459 @@
+---
+import headerBg from "~/shared-images/zeitk-header.png";
+import heroImage from "~/shared-images/screenshot-zeitk.png";
+
+import zeitk_logo from "~/shared-images/zeitk-logo_branco.png";
+
+import SecaLogo from "~/shared-images/Desertification.svg";
+import PhLogo from "~/shared-images/ph.svg";
+import FotosinteseLogo from "~/shared-images/fotosintese.svg";
+import AguaLogo from "~/shared-images/Fabric.svg";
+
+import { getImage, Image } from "astro:assets";
+import NavBar from "~/components/NavBar.astro";
+import Footer from "~/layouts/Footer.astro";
+import Layout from "~/layouts/Layout.astro";
+import PillButton from "~/components/PillButton.astro";
+
+const optimizedBackgroundImage = await getImage({ src: headerBg });
+---
+
+<Layout>
+  <main>
+    <!-- Header Section -->
+    <section
+      id="header"
+      class="relative flex flex-col bg-cover bg-center bg-no-repeat pb-10"
+      style={`background-image: url(${optimizedBackgroundImage.src});
+background-color: rgb(0, 0, 0, 0.50);
+background-blend-mode: darken;
+`}
+    >
+      <NavBar />
+
+      <!-- Header Content -->
+      <div class="flex flex-1 flex-col items-center justify-center px-4">
+        <!-- Producer Button -->
+        <div class="m-8">
+          <button
+            class="rounded-full bg-amber-800 px-6 py-2 text-sm font-medium text-white"
+          >
+            PARA O PRODUTOR
+          </button>
+        </div>
+
+        <!-- Zeit K Logo -->
+        <div class="text-center">
+          <Image
+            src={zeitk_logo}
+            alt={`Zeit k logo`}
+            width={300}
+            class="mx-auto mb-4"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="bg-white px-4 py-20">
+      <div class="mx-auto max-w-7xl lg:px-42">
+        <div class="flex flex-col items-center gap-16 lg:grid lg:grid-cols-2">
+          <!-- Left Content -->
+          <div class="w-full space-y-10">
+            <h2
+              class="text-textdark font-mono text-4xl md:text-5xl lg:text-6xl"
+            >
+              Em menos de <span class="text-accent-one fond-bold"
+                >5 minutos</span
+              >
+            </h2>
+            <p class="text-textdark text-xl md:text-2xl">
+              com o Zeit K, você identifica a necessidade e planeja a ação ideal
+              para a sua plantação.
+            </p>
+            <!-- Button for desktop only -->
+            <div class="hidden pt-8 lg:block">
+              <a
+                target="_blank"
+                href="https://tjoyx.share.hsforms.com/2EeHI4jClTlaIpOjVXtDl-A"
+              >
+                <PillButton style="accent-k">CONHEÇA A SOLUÇÃO</PillButton>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Content - Hero Image -->
+          <div class="flex w-full justify-center lg:w-auto">
+            <div class="relative w-full max-w-xs sm:max-w-sm lg:max-w-lg">
+              <Image
+                src={heroImage}
+                alt="Zeit K app interface showing map with collection points"
+                class="h-auto w-full rounded-3xl"
+                width={260 * 2}
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <!-- Button for mobile only -->
+          <div class="w-full pt-8 lg:hidden">
+            <a
+              target="_blank"
+              href="https://tjoyx.share.hsforms.com/2EeHI4jClTlaIpOjVXtDl-A"
+            >
+              <PillButton style="accent-k">CONHEÇA A SOLUÇÃO</PillButton>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Potassium Benefits Section -->
+    <section class="bg-gray-50 px-4 py-20">
+      <div class="mx-auto max-w-6xl">
+        <!-- Mobile/Tablet Header -->
+        <div class="mb-16 text-center lg:hidden">
+          <h2 class="mb-6 text-3xl font-bold text-gray-900 md:text-4xl">
+            O potássio é um <span class="text-red-600"
+              >macronutriente essencial</span
+            > para todas culturas agrícolas
+          </h2>
+          <p class="text-lg text-gray-700 md:text-xl">
+            Atua em funções reguladoras das plantas, como:
+          </p>
+        </div>
+
+        <!-- Mobile Layout: 2x2 Grid -->
+        <div class="mb-16 grid grid-cols-2 gap-6 lg:hidden">
+          <!-- Drought Resistance -->
+          <div
+            class="rounded-xl border border-gray-100 bg-white p-6 text-center"
+          >
+            <div class="flex flex-col items-center space-y-3">
+              <SecaLogo />
+              <h3 class="text-sm font-bold text-gray-900">
+                Enfrentamento da seca
+              </h3>
+            </div>
+          </div>
+
+          <!-- pH Maintenance -->
+          <div
+            class="rounded-xl border border-gray-100 bg-white p-6 text-center"
+          >
+            <div class="flex flex-col items-center space-y-3">
+              <PhLogo />
+              <h3 class="text-sm font-bold text-gray-900">Manutenção do pH</h3>
+            </div>
+          </div>
+
+          <!-- Water Control -->
+          <div
+            class="rounded-xl border border-gray-100 bg-white p-6 text-center"
+          >
+            <div class="flex flex-col items-center space-y-3">
+              <AguaLogo />
+              <h3 class="text-sm font-bold text-gray-900">
+                Controle da entrada e saída de água
+              </h3>
+            </div>
+          </div>
+
+          <!-- Photosynthesis -->
+          <div
+            class="rounded-xl border border-gray-100 bg-white p-6 text-center"
+          >
+            <div class="flex flex-col items-center space-y-3">
+              <FotosinteseLogo />
+              <h3 class="text-sm font-bold text-gray-900">
+                Melhoria da fotossíntese
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Layout: 2x2 Grid with Text and Benefits -->
+        <div class="mb-16 hidden gap-8 lg:grid lg:grid-cols-2">
+          <!-- First Item: Title and Subtitle -->
+          <div class="flex flex-col justify-center">
+            <h2 class="mb-6 text-4xl font-bold text-gray-900">
+              O potássio é um <span class="text-red-600"
+                >macronutriente essencial</span
+              > para todas culturas agrícolas
+            </h2>
+            <p class="text-xl text-gray-700">
+              Atua em funções reguladoras das plantas, como:
+            </p>
+          </div>
+
+          <!-- Second Item: Subgrid with 2 benefits -->
+          <div class="grid grid-cols-2 gap-4">
+            <!-- Drought Resistance -->
+            <div
+              class="rounded-xl border border-gray-100 bg-white p-6 text-center"
+            >
+              <div class="flex flex-col items-center space-y-3">
+                <SecaLogo />
+                <h3 class="text-sm font-bold text-gray-900">
+                  Enfrentamento da seca
+                </h3>
+              </div>
+            </div>
+
+            <!-- pH Maintenance -->
+            <div
+              class="rounded-xl border border-gray-100 bg-white p-6 text-center"
+            >
+              <div class="flex flex-col items-center space-y-3">
+                <PhLogo />
+                <h3 class="text-sm font-bold text-gray-900">
+                  Manutenção do pH
+                </h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Third Item: Water Control -->
+          <div
+            class="rounded-xl border border-gray-100 bg-white p-8 text-center"
+          >
+            <div class="flex flex-col items-center space-y-4">
+              <AguaLogo />
+              <h3 class="text-lg font-bold text-gray-900">
+                Controle da entrada e saída de água
+              </h3>
+            </div>
+          </div>
+
+          <!-- Fourth Item: Photosynthesis -->
+          <div
+            class="rounded-xl border border-gray-100 bg-white p-8 text-center"
+          >
+            <div class="flex flex-col items-center space-y-4">
+              <FotosinteseLogo />
+              <h3 class="text-lg font-bold text-gray-900">
+                Melhoria da fotossíntese
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="text-center">
+          <p
+            class="mx-auto max-w-4xl text-lg leading-relaxed text-gray-700 md:text-xl"
+          >
+            A aplicação de fertilizantes foliares à base de potássio auxilia no
+            desenvolvimento saudável da planta, sendo uma alternativa para
+            corrigir deficiências nutricionais da safra com mais agilidade.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Zeit K Guarantees Section -->
+    <section class="bg-white px-4 py-20">
+      <div class="mx-auto max-w-6xl">
+        <!-- Orange Header Banner -->
+        <div class="mb-0 text-center">
+          <div
+            class="relative z-10 inline-block rounded-lg bg-orange-500 px-8 py-4 text-xl font-bold text-white"
+          >
+            O Zeit K garante:
+          </div>
+        </div>
+
+        <!-- Guarantees Content Box -->
+        <div class="relative -mt-6 rounded-xl bg-gray-100 p-8 pt-12 md:p-12">
+          <!-- Red Vertical Accent Bar - Mobile and Tablet only -->
+          <div
+            class="absolute top-0 bottom-0 left-0 w-1 rounded-l-xl lg:hidden"
+            style="background: linear-gradient(180deg, #BF1A2F 0%, #D3402F 50%, #D5452F 75%, #E7662F 100%);"
+          >
+          </div>
+
+          <!-- Guarantees Grid -->
+          <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <!-- Diagnóstico imediato -->
+            <div class="text-center">
+              <div class="mb-3 h-2 w-full bg-red-500"></div>
+              <h3
+                class="mb-3 text-left text-lg font-bold text-gray-900 md:text-xl"
+              >
+                Diagnóstico imediato
+              </h3>
+              <p class="text-left text-sm text-gray-700 md:text-base">
+                Identificar a necessidade de potássio em menos de 5 minutos.
+              </p>
+            </div>
+
+            <!-- Monitoramento precoce -->
+            <div class="text-center">
+              <div class="mb-3 h-2 w-full bg-red-500"></div>
+              <h3
+                class="mb-3 text-left text-lg font-bold text-gray-900 md:text-xl"
+              >
+                Monitoramento precoce
+              </h3>
+              <p class="text-left text-sm text-gray-700 md:text-base">
+                Realizar análises diretamente no campo desde os primeiros
+                estádios fenológicos.
+              </p>
+            </div>
+
+            <!-- Decisão ágil -->
+            <div class="text-center">
+              <div class="mb-3 h-2 w-full bg-red-500"></div>
+              <h3
+                class="mb-3 text-left text-lg font-bold text-gray-900 md:text-xl"
+              >
+                Decisão ágil
+              </h3>
+              <p class="text-left text-sm text-gray-700 md:text-base">
+                Tomar decisões rápidas e assertivas para corrigir a falta de
+                potássio.
+              </p>
+            </div>
+
+            <!-- Planejamento estratégico -->
+            <div class="text-center">
+              <div class="mb-3 h-2 w-full bg-orange-500"></div>
+              <h3
+                class="mb-3 text-left text-lg font-bold text-gray-900 md:text-xl"
+              >
+                Planejamento estratégico
+              </h3>
+              <p class="text-left text-sm text-gray-700 md:text-base">
+                Planejar ações ideais que preservam a qualidade e aumentam a
+                rentabilidade da lavoura.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Call to Action Button -->
+        <div class="mt-12 text-center">
+          <a
+            target="_blank"
+            href="https://tjoyx.share.hsforms.com/2EeHI4jClTlaIpOjVXtDl-A"
+          >
+            <button
+              class="bg-accent-k rounded-full px-12 py-6 text-xl font-bold text-white transition-colors hover:bg-orange-600"
+            >
+              OTIMIZE A SUA LAVOURA COM O ZEIT K
+            </button>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="bg-orange-500 px-4 py-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid items-start gap-12 lg:grid-cols-2">
+          <!-- Left Column - Title and Description -->
+          <div class="text-center lg:text-left">
+            <h2 class="mb-6 text-4xl font-bold text-white md:text-5xl">
+              Dúvidas Frequentes
+            </h2>
+            <p class="text-textlight text-xl leading-relaxed">
+              Aqui você encontra respostas rápidas e objetivas para conhecer
+              melhor nossa plataforma e como ela pode transformar a gestão da
+              sua propriedade rural.
+            </p>
+          </div>
+
+          <!-- Right Column - FAQ Items -->
+          <div class="space-y-4">
+            <!-- FAQ 1 - Expanded -->
+            <div class="bg-opacity-80 rounded-lg bg-orange-400 p-6">
+              <button
+                class="flex w-full items-center justify-between text-left"
+                onclick="toggleFAQ(1)"
+              >
+                <h3 class="pr-4 text-lg font-semibold text-white md:text-xl">
+                  A tecnologia só analisa potássio?
+                </h3>
+              </button>
+              <div
+                class="text-textlight mt-4 overflow-hidden transition-all duration-300 ease-in-out"
+                id="answer-1"
+              >
+                <p>
+                  Nossa tecnologia foi desenvolvida pensando na possibilidade de
+                  entrega de resultados imediato, por isso, por enquanto só
+                  analisamos potássio.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 2 - Collapsed -->
+            <div class="bg-opacity-80 rounded-lg bg-orange-400 p-6">
+              <button
+                class="flex w-full items-center justify-between text-left"
+                onclick="toggleFAQ(2)"
+              >
+                <h3 class="pr-4 text-lg font-semibold text-white md:text-xl">
+                  A tecnologia é vendida?
+                </h3>
+              </button>
+              <div
+                class="text-textlight mt-4 overflow-hidden transition-all duration-300 ease-in-out"
+                id="answer-1"
+              >
+                <p>
+                  Nossa tecnologia é oferecida através de planos de commodato,
+                  onde disponibilizamos o kit necessário para as análises
+                  ILIMITADAS cobrando uma mensalidade que cabe no seu bolso.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 3 - Collapsed -->
+            <div class="bg-opacity-80 rounded-lg bg-orange-400 p-6">
+              <button
+                class="flex w-full items-center justify-between text-left"
+                onclick="toggleFAQ(3)"
+              >
+                <h3 class="pr-4 text-lg font-semibold text-white md:text-xl">
+                  Tem limite de análises?
+                </h3>
+              </button>
+              <div
+                class="text-textlight mt-4 overflow-hidden transition-all duration-300 ease-in-out"
+                id="answer-1"
+              >
+                <p>
+                  A partir de nosso plano anual, as análises são ilimitadas.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 4 - Collapsed -->
+            <div class="bg-opacity-80 rounded-lg bg-orange-400 p-6">
+              <button
+                class="flex w-full items-center justify-between text-left"
+                onclick="toggleFAQ(4)"
+              >
+                <h3 class="pr-4 text-lg font-semibold text-white md:text-xl">
+                  Quais culturas ela atende?
+                </h3>
+              </button>
+              <div
+                class="text-textlight mt-4 overflow-hidden transition-all duration-300 ease-in-out"
+                id="answer-1"
+              >
+                <p>
+                  Atendemos as principais culturas do Brasil como soja, milho,
+                  algodão, cana-de-açucar, FLV, entre outras.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
