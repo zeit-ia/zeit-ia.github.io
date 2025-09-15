@@ -6,7 +6,7 @@ import nira_bg from "../shared-images/nira-bg.jpg";
 import zeitagro_logo from "../shared-images/zeitagro-logo.svg";
 import zeitagro_bg from "../shared-images/zeitagro-bg.jpg";
 
-// import PillButton from "./PillButton.astro";
+import PillButton from "./PillButton.astro";
 import { Image, getImage } from "astro:assets";
 
 const products = [
@@ -25,7 +25,7 @@ const products = [
           "Mais agilidade, mais eficiência, mais resultado.",
         ],
         buttonText: "SAIBA MAIS",
-        buttonLink: "#",
+        buttonLink: "/k",
       },
     ],
   },
@@ -43,7 +43,7 @@ const products = [
           "Uma ferramenta inteligente, que organiza o dia a dia no campo, economiza tempo e oferece mais controle sobre o mercado.",
         ],
         buttonText: "SAIBA MAIS",
-        buttonLink: "#",
+        buttonLink: null,
       },
     ],
   },
@@ -62,7 +62,7 @@ const products = [
           "Resultados em menos de 2 minutos direto no app. Assertividade média de 99%.",
         ],
         buttonText: "SAIBA MAIS",
-        buttonLink: "#",
+        buttonLink: null,
       },
     ],
   },
@@ -77,12 +77,12 @@ const products = [
   <div class="mx-auto mb-16 max-w-7xl px-10">
     <h2
       id="products-heading"
-      class="mb-4 font-mono text-3xl font-bold text-tesxtdark md:mb-6 md:text-4xl lg:text-5xl"
+      class="text-tesxtdark mb-4 font-mono text-3xl font-bold md:mb-6 md:text-4xl lg:text-5xl"
     >
       Da análise à ação: <br />
       <span class="text-accent-one">nossas soluções te levam até lá.</span>
     </h2>
-    <p class="mx-auto text-lg text-textdark md:mx-0 md:text-xl">
+    <p class="text-textdark mx-auto text-lg md:mx-0 md:text-xl">
       As tecnologias da Zeit foram desenvolvidas para oferecer <b
         >respostas rápidas</b
       >
@@ -97,7 +97,7 @@ const products = [
         .filter((p) => p.id === "zeit-k")
         .map((product) => (
           <div
-            class="mb-4 bg-cover bg-center px-4 py-10 md:py-20 rounded-md"
+            class="mb-4 rounded-md bg-cover bg-center px-4 py-10 md:py-20"
             style={`background-image: url('${product.image.src}');
                 background-color: rgb(0, 0, 0, 0.35);
                 background-blend-mode: darken;`}
@@ -106,14 +106,14 @@ const products = [
             <h3 id={`product-heading-${product.id}`} class="sr-only">
               {product.name}
             </h3>
-            <div class="max-w-sm mx-auto rounded-4xl bg-background/30 p-4 backdrop-blur-md">
+            <div class="bg-background/30 mx-auto max-w-sm rounded-4xl p-4 backdrop-blur-md">
               <div
                 class="product-card-carousel"
                 id={`carousel-${product.id}`}
                 data-product-id={product.id}
               >
                 {product.cards.map((card, cardIndex) => (
-                  <div class="product-card " data-card-index={cardIndex}>
+                  <div class="product-card" data-card-index={cardIndex}>
                     <Image
                       src={product.logo}
                       alt={`${product.name} logo`}
@@ -123,12 +123,16 @@ const products = [
                       loading="lazy"
                     />
                     {card.description.map((x) => (
-                      <p class="text-left text-textlight">{x}</p>
+                      <p class="text-textlight text-left">{x}</p>
                     ))}
-                    <div class="flex justify-center mt-10">
-                      <!-- <a href={card.buttonLink}> -->
-                        <!-- <PillButton>{card.buttonText}</PillButton> -->
-                      <!-- </a> -->
+                    <div class="mt-10 flex justify-center">
+                      {card.buttonLink ? (
+                        <a href={card.buttonLink}>
+                          <PillButton>{card.buttonText}</PillButton>
+                        </a>
+                      ) : (
+                        <> </>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -140,7 +144,7 @@ const products = [
                       type="button"
                       aria-label={`Go to slide ${dotIndex + 1} for ${product.name}`}
                       class:list={[
-                        "h-3 w-3 rounded-full bg-gray-400  focus:ring-offset-2 focus:outline-none",
+                        "h-3 w-3 rounded-full bg-gray-400 focus:ring-offset-2 focus:outline-none",
                         { "bg-gray-700": dotIndex === 0 },
                       ]}
                       data-dot-index={dotIndex}
@@ -160,7 +164,7 @@ const products = [
           .filter((p) => p.id === "zeit-agro" || p.id === "nira")
           .map((product) => (
             <div
-              class="bg-cover bg-center px-4 py-10 md:py-20 rounded-md"
+              class="rounded-md bg-cover bg-center px-4 py-10 md:py-20"
               style={`background-image: url('${product.image.src}');
                 background-color: rgb(0, 0, 0, 0.35);
                 background-blend-mode: darken;`}
@@ -170,7 +174,7 @@ const products = [
                 {product.name}
               </h3>
               {/* Product Card Carousel */}
-              <div class="mx-auto w-full max-w-sm rounded-4xl bg-background/30 p-8 text-textlight backdrop-blur-md">
+              <div class="bg-background/30 text-textlight mx-auto w-full max-w-sm rounded-4xl p-8 backdrop-blur-md">
                 <div
                   class="product-card-carousel"
                   id={`carousel-${product.id}`}
@@ -178,7 +182,7 @@ const products = [
                 >
                   {product.cards.map((card, cardIndex) => (
                     <div
-                      class="product-card flex flow-col gap-10 justify-between"
+                      class="product-card flow-col flex justify-between gap-10"
                       data-card-index={cardIndex}
                     >
                       <Image
@@ -188,12 +192,16 @@ const products = [
                         class="mx-auto mb-4"
                       />
                       {card.description.map((x) => (
-                        <p class="text-left text-textlight">{x}</p>
+                        <p class="text-textlight text-left">{x}</p>
                       ))}
-                      <div class="flex justify-center mt-10">
-                        <!-- <a href={card.buttonLink}> -->
-                          <!-- <PillButton>{card.buttonText}</PillButton> -->
-                        <!-- </a> -->
+                      <div class="mt-10 flex justify-center">
+                        {card.buttonLink ? (
+                          <a href={card.buttonLink}>
+                            <PillButton>{card.buttonText}</PillButton>
+                          </a>
+                        ) : (
+                          <> </>
+                        )}
                       </div>
                     </div>
                   ))}
