@@ -13,10 +13,10 @@
     "@astrojs/check": "^0.9.5"
   },
   "devDependencies": {
-    "@astrojs/language-server": "^2.15.5",
+    "@astrojs/language-server": "^2.16.0",
     "@astrojs/sitemap": "^3.6.0",
     "@tailwindcss/vite": "^4.1.16",
-    "astro": "^5.15.1",
+    "astro": "^5.15.3",
     "prettier": "3.6.2",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-tailwindcss": "0.7.1",
