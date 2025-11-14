@@ -1,5 +1,12 @@
 ---
 import PillButton from "./PillButton.astro";
+
+const formInputStyle = `
+   w-full rounded-md p-3
+   bg-linear-to-r from-white/30 to-[#999]/30
+   text-white placeholder-white placeholder:font-semibold
+   focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900 focus:outline-none
+ `;
 ---
 
 <section
@@ -15,22 +22,218 @@ import PillButton from "./PillButton.astro";
         id="contact-heading"
         class="text-brand-secondary mb-4 font-mono text-3xl font-bold md:mb-6 md:text-4xl lg:text-5xl"
       >
-        Sua jornada com mais controle e rentabilidade começa aqui.
+        Sua jornada com <br />
+        mais controle <br />
+        e rentabilidade <br />
+        começa aqui.
       </h2>
       <p class="text-textlight mx-auto max-w-xl text-lg md:mx-0 md:text-xl">
-        Entre em contato e descubra como nossa tecnologia pode transformar a sua
-        produção — e o seu negócio.
+        Entre em contato e descubra <br />
+        como nossa tecnologia pode transformar <br />
+        a sua produção — e o seu negócio.
       </p>
     </div>
 
     <div class="mx-auto w-full max-w-lg md:mr-0 md:ml-auto">
-      <a
-        href="https://tjoyx.share.hsforms.com/2EeHI4jClTlaIpOjVXtDl-A"
-        target="_blank"
-        aria-label="Entre e contato"
+      <form
+        id="contact-form"
+        class="flex flex-col gap-4"
+        aria-label="Contact Form"
       >
-        <PillButton> Entre em contato </PillButton>
-      </a>
+        <label for="name" class="sr-only">Nome</label>
+        <input
+          required
+          minlength="3"
+          maxlength="127"
+          type="text"
+          id="firstname"
+          name="name"
+          placeholder="Nome"
+          autocomplete="name"
+          class={formInputStyle}
+          aria-required="true"
+        />
+
+        <label for="lastname" class="sr-only">Empresa/Instituição</label>
+        <input
+          required
+          minlength="2"
+          maxlength="127"
+          type="text"
+          id="lastname"
+          name="lastname"
+          placeholder="Empresa/Instituição"
+          autocomplete="organization"
+          class={formInputStyle}
+          aria-required="false"
+        />
+
+        <label for="phone" class="sr-only">Telefone</label>
+        <input
+          required
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="Telefone"
+          autocomplete="tel"
+          class={formInputStyle}
+          aria-required="false"
+          title="(99) 99999-9999 ou +999999999999"
+        />
+
+        <label for="email" class="sr-only">E-mail</label>
+        <input
+          required
+          maxlength="127"
+          type="email"
+          id="email"
+          name="email"
+          placeholder="E-mail"
+          autocomplete="email"
+          required
+          class={formInputStyle}
+          aria-required="true"
+        />
+
+        <label for="descricao" class="sr-only">Nos conte sobre você</label>
+        <textarea
+          id="descricao"
+          name="descricao"
+          maxlength="512"
+          rows="5"
+          placeholder="Nos conte sobre você"
+          class={formInputStyle}
+          aria-required="false"></textarea>
+
+        <div
+          class="flex items-center gap-2 w-full rounded-md p-3 bg-linear-to-r from-white/30 to-[#999]/30 focus-within:ring-2 focus-within:ring-white focus-within:ring-offset-2 focus-within:ring-offset-gray-900 focus-within:outline-none"
+        >
+          <input
+            type="checkbox"
+            id="marketing"
+            name="eu_aceito_receber_notificacoes_e_conteudos_de_marketing_da_zeit"
+            value="true"
+            class="rounded border-white/30 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900 focus:outline-none"
+          />
+          <label for="marketing" class="text-white text-sm"
+            >Aceito receber notificações e conteúdos de marketing da Zeit</label
+          >
+        </div>
+
+        <PillButton
+          buttonId="submit-btn"
+          extraStyle="transition-all duration-500 ease-in-out"
+        >
+          FALAR COM UM ESPECIALISTA
+        </PillButton>
+      </form>
+
+      <script>
+        type Field = { name: string; value: string };
+
+        function isString(val: unknown): val is string {
+          return typeof val === "string";
+        }
+
+        function maskPhone(input: HTMLInputElement): void {
+          if (input.value.startsWith("+")) {
+            // For international, just clean non-digits except +
+            input.value = input.value.replace(/[^\d+]/g, "");
+            return;
+          }
+          let value = input.value.replace(/\D/g, "");
+          if (value.startsWith("55") && value.length >= 12) {
+            // International Brazilian: +55 (11) 99999-9999
+            value =
+              "+" +
+              value.slice(0, 2) +
+              " (" +
+              value.slice(2, 4) +
+              ") " +
+              value.slice(4, 9) +
+              "-" +
+              value.slice(9, 13);
+          } else if (value.length <= 11) {
+            // National Brazilian
+            if (value.length <= 2) {
+              value = "(" + value + ")";
+            } else if (value.length <= 6) {
+              value = "(" + value.slice(0, 2) + ") " + value.slice(2);
+            } else {
+              value =
+                "(" +
+                value.slice(0, 2) +
+                ") " +
+                value.slice(2, 7) +
+                "-" +
+                value.slice(7);
+            }
+          } else {
+            // Other international
+            value = "+" + value;
+          }
+          input.value = value;
+        }
+
+        const form = document.getElementById("contact-form") as HTMLFormElement;
+
+        const phoneInput = document.getElementById("phone") as HTMLInputElement;
+        let previousPhoneValue = "";
+        phoneInput.addEventListener("input", () => {
+          const currentValue = phoneInput.value;
+          if (currentValue.length < previousPhoneValue.length) {
+            // Deleting, remove non-digits
+            phoneInput.value = currentValue.replace(/\D/g, "");
+          } else {
+            // Typing, apply mask
+            maskPhone(phoneInput);
+          }
+          previousPhoneValue = phoneInput.value;
+        });
+
+        const submitBtn = document.getElementById(
+          "submit-btn",
+        ) as HTMLButtonElement;
+
+        function onFormSubmit(ev: SubmitEvent): void {
+          ev.preventDefault();
+          const formUrl =
+            "https://api.hsforms.com/submissions/v3/integration/submit/49627689/11e1c8e2-30a5-4e56-88a4-e8d55ed0e5f8";
+          const formData = new FormData(form);
+          const fields: Field[] = [];
+          for (const [name, value] of formData) {
+            if (!isString(value)) {
+              throw new Error(
+                `unnexpected type on form ${name}, expected string but got ${typeof value}`,
+              );
+            }
+            fields.push({ name, value });
+          }
+          const req = {
+            fields: fields,
+            context: {
+              pageUri: window.location.href,
+              pageName: document.title,
+            },
+          };
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Enviando...";
+          fetch(formUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(req),
+          }).then(() => {
+            submitBtn.classList.remove(
+              "bg-background",
+              "hover:bg-brand-secondary",
+            );
+            submitBtn.classList.add("bg-green-400");
+
+            submitBtn.textContent = "Enviado";
+          });
+        }
+        form.addEventListener("submit", onFormSubmit);
+      </script>
     </div>
   </div>
 </section>

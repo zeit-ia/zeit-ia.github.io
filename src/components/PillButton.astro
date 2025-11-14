@@ -8,15 +8,22 @@ const styles = {
 
 interface Props {
   style?: keyof typeof styles;
+  buttonId?: string;
+  extraStyle?: string;
 }
 
-const { style = "white" } = Astro.props;
+const { style = "white", ...props } = Astro.props;
 
 const styleCss = styles[style];
 ---
 
 <button
-  class={`bg-opacity-90 hover:bg-opacity-100 text-brand-primary rounded-full px-6 py-4 font-sans font-extrabold tracking-wide uppercase transition-colors duration-500  focus:outline-none text-lg w-full ${styleCss}`}
+  id={props.buttonId}
+  class={`
+  bg-opacity-90 hover:bg-opacity-100 text-brand-primary rounded-full px-6 py-4 font-sans font-extrabold tracking-wide uppercase transition-colors duration-500  focus:outline-none text-lg w-full
+   ${styleCss}
+   ${props.extraStyle}
+  `}
 >
   <slot />
 </button>
