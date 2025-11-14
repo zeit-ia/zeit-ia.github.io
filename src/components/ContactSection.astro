@@ -195,7 +195,8 @@ const formInputStyle = `
           "submit-btn",
         ) as HTMLButtonElement;
 
-        function onFormSubmit(_: SubmitEvent): void {
+        function onFormSubmit(ev: SubmitEvent): void {
+          ev.preventDefault();
           const formUrl =
             "https://api.hsforms.com/submissions/v3/integration/submit/49627689/11e1c8e2-30a5-4e56-88a4-e8d55ed0e5f8";
           const formData = new FormData(form);
